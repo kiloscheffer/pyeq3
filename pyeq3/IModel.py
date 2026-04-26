@@ -13,6 +13,7 @@ import pyeq3
 import numpy
 import scipy.interpolate
 import scipy.stats
+import odrpack
 from itertools import groupby
 
 numpy.seterr(all="ignore")
@@ -369,17 +370,29 @@ class IModel(object):
             self.ci = None
             return
         else:
-            # see both scipy.odr and http://www.scipy.org/Cookbook/OLS
-            # this is inefficient but works for every possible case
-            model = scipy.odr.Model(self.WrapperForODR)
+            # Port from scipy.odr to odrpack.odr_fit. scipy.odr is
+            # deprecated in scipy 1.17 and slated for removal in 1.19.
+            # odrpack on PyPI wraps the same ODRPACK95 Fortran backend
+            # with a function-style API. maxit=0 + fit_type=2 (OLS, no
+            # iterations) in scipy.odr extracted covariance at the given
+            # beta0. odrpack rejects maxit=0 so we use maxit=1 — the
+            # covariance/sd_beta are populated from a single evaluation,
+            # matching scipy.odr's zero-iteration semantics. Arg-order
+            # swap: scipy Model(f(beta, x)) vs odrpack odr_fit(f(x, beta)),
+            # handled inline via closure so WrapperForODR stays unchanged.
             self.dataCache.FindOrCreateAllDataCache(self)
-            data = scipy.odr.odrpack.Data(
+
+            def _f(x, beta):
+                return self.WrapperForODR(beta, x)
+
+            parameterStatistics = odrpack.odr_fit(
+                _f,
                 self.dataCache.allDataCacheDictionary["IndependentData"],
                 self.dataCache.allDataCacheDictionary["DependentData"],
+                beta0=self.solvedCoefficients,
+                task="OLS",
+                maxit=1,
             )
-            myodr = scipy.odr.ODR(data, model, beta0=self.solvedCoefficients, maxit=0)
-            myodr.set_job(fit_type=2)
-            parameterStatistics = myodr.run()
 
             # parameter covariance matrix
             self.cov_beta = parameterStatistics.cov_beta
@@ -604,21 +617,25 @@ class IModel(object):
             if (
                 self.fittingTarget == "ODR"
             ):  # this is inefficient but works for every possible case
-                model = scipy.odr.Model(self.WrapperForODR)
-                if len(self.dataCache.allDataCacheDictionary["Weights"]):
-                    data = scipy.odr.Data(
-                        self.dataCache.allDataCacheDictionary["IndependentData"],
-                        self.dataCache.allDataCacheDictionary["DependentData"],
-                        we=self.dataCache.allDataCacheDictionary["Weights"],
-                    )
-                else:
-                    data = scipy.odr.Data(
-                        self.dataCache.allDataCacheDictionary["IndependentData"],
-                        self.dataCache.allDataCacheDictionary["DependentData"],
-                    )
-                myodr = scipy.odr.ODR(data, model, beta0=inCoeffs, maxit=0)
-                myodr.set_job(fit_type=2)
-                out = myodr.run()
+                # Despite the fittingTarget=="ODR" guard this is the
+                # evaluation path, not the solver — it runs OLS
+                # (fit_type=2) with maxit=0 to compute the ODR residual
+                # at inCoeffs. Actual ODR solving happens in
+                # SolverService.SolveUsingODR. odrpack mapping:
+                # task="OLS", maxit=1. Arg-order swap handled inline.
+                def _f(x, beta):
+                    return self.WrapperForODR(beta, x)
+
+                weights = self.dataCache.allDataCacheDictionary["Weights"]
+                out = odrpack.odr_fit(
+                    _f,
+                    self.dataCache.allDataCacheDictionary["IndependentData"],
+                    self.dataCache.allDataCacheDictionary["DependentData"],
+                    beta0=inCoeffs,
+                    weight_y=weights if len(weights) else None,
+                    task="OLS",
+                    maxit=1,
+                )
                 val = out.sum_square
                 if numpy.isfinite(val):
                     return val

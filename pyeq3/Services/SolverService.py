@@ -16,7 +16,7 @@ from . import diffev
 try:
     import scipy.interpolate
     import scipy.optimize
-    import scipy.odr
+    import odrpack
 except ImportError:
     pass
 numpy.seterr(all="ignore")
@@ -258,33 +258,41 @@ class SolverService(object):
     def SolveUsingODR(self, inModel):
         logging.info("running SolveUsingODR")
         inModel.dataCache.FindOrCreateAllDataCache(inModel)
-        modelObject = scipy.odr.Model(inModel.WrapperForODR)
-        if len(inModel.dataCache.allDataCacheDictionary["Weights"]):
-            dataObject = scipy.odr.Data(
-                inModel.dataCache.allDataCacheDictionary["IndependentData"],
-                inModel.dataCache.allDataCacheDictionary["DependentData"],
-                inModel.dataCache.allDataCacheDictionary["Weights"],
-            )
-        else:
-            dataObject = scipy.odr.Data(
-                inModel.dataCache.allDataCacheDictionary["IndependentData"],
-                inModel.dataCache.allDataCacheDictionary["DependentData"],
-            )
+
+        # Port from scipy.odr to odrpack.odr_fit — see IModel.py's
+        # CalculateCoefficientAndFitStatistics for the rationale.
+        # Hoisted shared setup because odrpack takes these per-call
+        # rather than via a separate Data object. The closure handles
+        # the scipy (beta, x) -> odrpack (x, beta) argument-order
+        # inversion while preserving WrapperForODR's signature.
+        def _f(x, beta):
+            return inModel.WrapperForODR(beta, x)
+
+        xdata = inModel.dataCache.allDataCacheDictionary["IndependentData"]
+        ydata = inModel.dataCache.allDataCacheDictionary["DependentData"]
+        weights = inModel.dataCache.allDataCacheDictionary["Weights"]
+        weight_y = weights if len(weights) else None
+        maxit = (
+            len(inModel.GetCoefficientDesignators()) * self.fminIterationLimit
+        )
 
         results = []
 
         # try with initial coefficients equal to 1
         try:
-            myodr = scipy.odr.ODR(
-                dataObject,
-                modelObject,
+            # task="explicit-ODR" + diff_scheme="forward" match
+            # scipy.odr's set_job(fit_type=0, deriv=0): explicit ODR
+            # with forward-only finite differences for derivatives.
+            out = odrpack.odr_fit(
+                _f,
+                xdata,
+                ydata,
                 beta0=numpy.ones(len(inModel.GetCoefficientDesignators())),
-                maxit=len(inModel.GetCoefficientDesignators())
-                * self.fminIterationLimit,
+                weight_y=weight_y,
+                task="explicit-ODR",
+                diff_scheme="forward",
+                maxit=maxit,
             )
-            # explicit ODR, faster forward-only finite differences for derivatives
-            myodr.set_job(fit_type=0, deriv=0)
-            out = myodr.run()
             coeffs = out.beta
             SSQ = out.sum_square
             if not numpy.any(numpy.isnan(coeffs)):
@@ -294,16 +302,16 @@ class SolverService(object):
 
         # try with initial coefficients from DE
         try:
-            myodr = scipy.odr.ODR(
-                dataObject,
-                modelObject,
+            out = odrpack.odr_fit(
+                _f,
+                xdata,
+                ydata,
                 beta0=inModel.deEstimatedCoefficients,
-                maxit=len(inModel.GetCoefficientDesignators())
-                * self.fminIterationLimit,
+                weight_y=weight_y,
+                task="explicit-ODR",
+                diff_scheme="forward",
+                maxit=maxit,
             )
-            # explicit ODR, faster forward-only finite differences for derivatives
-            myodr.set_job(fit_type=0, deriv=0)
-            out = myodr.run()
             coeffs = out.beta
             SSQ = out.sum_square
             if not numpy.any(numpy.isnan(coeffs)):
@@ -321,17 +329,16 @@ class SolverService(object):
                 pass
 
             try:
-                myodr = scipy.odr.ODR(
-                    dataObject,
-                    modelObject,
+                out = odrpack.odr_fit(
+                    _f,
+                    xdata,
+                    ydata,
                     beta0=inModel.estimatedCoefficients,
-                    maxit=len(inModel.GetCoefficientDesignators())
-                    * self.fminIterationLimit,
+                    weight_y=weight_y,
+                    task="explicit-ODR",
+                    diff_scheme="forward",
+                    maxit=maxit,
                 )
-                # explicit ODR, faster forward-only finite differences
-                # for derivatives
-                myodr.set_job(fit_type=0, deriv=0)
-                out = myodr.run()
                 coeffs = out.beta
                 SSQ = out.sum_square
                 if not numpy.any(numpy.isnan(coeffs)):

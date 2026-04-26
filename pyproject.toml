@@ -25,6 +25,10 @@ python = "^3.8"
 numpy = "^1.24"
 scipy = "^1.10"
 matplotlib = "^3.7"
+# Replaces scipy.odr which is deprecated in scipy 1.17 and slated for
+# removal in scipy 1.19. odrpack wraps the same ODRPACK95 Fortran
+# backend with a function-style API.
+odrpack = "^0.5.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "23.3.0"
