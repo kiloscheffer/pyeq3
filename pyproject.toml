@@ -22,13 +22,19 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-numpy = "^1.24"
+# Explicit range rather than caret: "^1.24" caps at <2.0, but the odrpack-based
+# fitting path runs fine on numpy 2.x. Allow both 1.x and 2.x; cap at the next
+# major.
+numpy = ">=1.24,<3"
 scipy = "^1.10"
 matplotlib = "^3.7"
 # Replaces scipy.odr which is deprecated in scipy 1.17 and slated for
 # removal in scipy 1.19. odrpack wraps the same ODRPACK95 Fortran
 # backend with a function-style API.
 odrpack = "^0.5.0"
+# Used by pyeq3.Utilities.Multifit, which pyeq3/Utilities/__init__.py imports
+# eagerly — so `import pyeq3` fails on a clean install without pypandoc.
+pypandoc = "^1.10"
 
 [tool.poetry.group.dev.dependencies]
 black = "23.3.0"
