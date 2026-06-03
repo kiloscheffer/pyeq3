@@ -625,7 +625,7 @@ def FitDataToAllModelsAndOutput(
             )
 
             text = f"{pypandoc.convert_text(equation.GetDisplayHTML(), 'tex', format='html')}"
-            text = text.replace("*", "$\cdot$")
+            text = text.replace("*", r"$\cdot$")
             axes.annotate(
                 f"{text}{equation.GetCoefficientDesignators()}\n{equation.solvedCoefficients}",
                 xy=(1.0, -0.2),
