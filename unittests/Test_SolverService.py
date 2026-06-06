@@ -28,7 +28,7 @@ class TestSolverService(unittest.TestCase):
         coefficients = pyeq3.solverService().SolveUsingODR(model)
         self.assertTrue(
             numpy.allclose(
-                coefficients, coefficientsShouldBe, rtol=1.0e-02, atol=1.0e-300
+                coefficients, coefficientsShouldBe, rtol=1.0e-03, atol=1.0e-300
             )
         )
 
