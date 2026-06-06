@@ -332,8 +332,12 @@ class IModel(object):
             self.Fstat = None
 
         try:
-            # F-statistic p-value
-            self.Fpv = 1.0 - scipy.stats.f.cdf(self.Fstat, self.df_r, self.df_e)
+            # F-statistic p-value. Use the survival function (sf = 1 - cdf)
+            # directly: for the tiny upper-tail probabilities seen here,
+            # 1.0 - cdf loses almost all precision to cancellation (and the
+            # result shifted between scipy versions), whereas sf is computed
+            # in the tail and is stable.
+            self.Fpv = scipy.stats.f.sf(self.Fstat, self.df_r, self.df_e)
         except Exception:
             self.Fpv = None
 
@@ -422,10 +426,12 @@ class IModel(object):
                 self.tstat_beta = None
 
             try:
-                # coef. p-values
-                self.pstat_beta = (
-                    1.0 - scipy.stats.t.cdf(numpy.abs(self.tstat_beta), self.df_e)
-                ) * 2.0
+                # coef. p-values (two-tailed). Use the survival function
+                # for the same reason as Fpv above: 2 * sf(|t|) avoids the
+                # 1 - cdf cancellation in the small-probability tail.
+                self.pstat_beta = 2.0 * scipy.stats.t.sf(
+                    numpy.abs(self.tstat_beta), self.df_e
+                )
             except Exception:
                 self.pstat_beta = None
 

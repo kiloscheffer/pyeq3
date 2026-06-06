@@ -21,7 +21,7 @@ class TestCalculateCoefficientAndFitStatistics(unittest.TestCase):
         model_rmse_ShouldBe = 00.142649386595
         model_r2adj_ShouldBe = 0.99598819167
         model_Fstat_ShouldBe = 2483.64151657
-        model_Fpv_ShouldBe = 2.64577248998e-12
+        model_Fpv_ShouldBe = 2.6457213754443016e-12
         model_ll_ShouldBe = 5.81269665017
         model_aic_ShouldBe = -0.693217572758
         model_bic_ShouldBe = -0.620872977703
@@ -30,7 +30,9 @@ class TestCalculateCoefficientAndFitStatistics(unittest.TestCase):
         )
         model_sd_beta_ShouldBe = numpy.array([0.0482103, 0.00093816])
         model_tstat_beta_ShouldBe = numpy.array([-36.52226166, 49.83614545])
-        model_pstat_beta_ShouldBe = numpy.array([4.28455049e-11, 2.64588351e-12])
+        model_pstat_beta_ShouldBe = numpy.array(
+            [4.2845356344100259e-11, 2.6457203351386194e-12]
+        )
         model_ci_ShouldBe = numpy.array(
             [
                 [-8.5158339321793157, -7.5224373409719512],
@@ -115,7 +117,7 @@ class TestCalculateCoefficientAndFitStatistics(unittest.TestCase):
         model_rmse_ShouldBe = 0.0270425329959
         model_r2adj_ShouldBe = 0.999837801207
         model_Fstat_ShouldBe = 30822.3699783
-        model_Fpv_ShouldBe = 3.33066907388e-16
+        model_Fpv_ShouldBe = 2.8349827407387309e-16
         model_ll_ShouldBe = 24.1054640542
         model_aic_ShouldBe = -3.83735710076
         model_bic_ShouldBe = -3.72884020818
