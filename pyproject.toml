@@ -27,14 +27,14 @@ python = "^3.8"
 # major.
 numpy = ">=1.24,<3"
 scipy = "^1.10"
-matplotlib = "^3.7"
 # Replaces scipy.odr which is deprecated in scipy 1.17 and slated for
 # removal in scipy 1.19. odrpack wraps the same ODRPACK95 Fortran
 # backend with a function-style API.
 odrpack = "^0.5.0"
-# Used by pyeq3.Utilities.Multifit, which pyeq3/Utilities/__init__.py imports
-# eagerly — so `import pyeq3` fails on a clean install without pypandoc.
-pypandoc = "^1.10"
+
+# Optional dependencies for plotting and documentation are listed in the [tool.poetry.extras] section below.
+matplotlib = {version = "^3.7", optional = true}
+pypandoc = {version = "^1.8.0", optional = true}
 
 [tool.poetry.group.dev.dependencies]
 black = "23.3.0"
@@ -42,3 +42,8 @@ black = "23.3.0"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+# add optional dependencies for plotting and documentation
+[tool.poetry.extras]
+output = ["matplotlib", "pypandoc"]
+docs = ["pypandoc"]

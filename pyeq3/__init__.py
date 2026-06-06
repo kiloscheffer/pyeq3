@@ -22,7 +22,8 @@ IPython, GUI, NodeJS, and web-based graphical examples.
 It includes orthogonal distance and relative error regressions.
 
 pyeq3 is released under a permissive license.
-It relies on numpy, scipy, and matplotlib.
+It relies on numpy, scipy and odrpack, and
+optionally on matplotlib and pypandoc for output.
 
  - Homepage: https://github.com/equations-project/pyeq3
  - Documentation: http://pyeq3.readthedocs.io
@@ -59,7 +60,8 @@ Requirements
 ------------
 
   - Python 3.7+
-  - Python modules: NumPy, SciPy, Matplotlib
+  - Python modules: NumPy, SciPy, ODRPACK
+  - Optional dependencies for output: Matplotlib, pypandoc
 
 Installation
 ------------
@@ -96,6 +98,11 @@ latest changes, you can install the stable version by typing
 the following into a terminal window:
 
     python -m pip install pyeq3
+
+If you want to include output, including pdfs and figures,
+you will also need to install the optional dependencies by typing
+
+    python -m pip install pyeq3[output]
 
 This method of installation does not give you easy access to all the examples,
 or the test suite. These can be found in the latest release package which can
