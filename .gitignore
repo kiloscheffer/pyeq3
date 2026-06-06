@@ -2,5 +2,8 @@ pyeq3.egg-info/
 /build/*
 /docs/_build
 /docs/*pdf
+examples/List/model_list.rst
 *.tmp
 *.pyc
+*DS_Store
+dist/*
