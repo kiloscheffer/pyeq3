@@ -4,12 +4,18 @@ import inspect
 import copy
 import multiprocessing
 import queue
-import pyeq3
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
 import numpy as np
 from datetime import datetime
-import pypandoc
+
+from ..Services.DataConverterService import DataConverterService
+from ..Services.OutputSourceCodeService import OutputSourceCodeService
+from .. import Models_3D
+from .. import Models_2D
+from ..Graphics.Graphics2D import ModelScatterConfidenceGraph
+from .. import PolyFunctions
+
+dataConvertorService = DataConverterService
+outputSourceCodeService = OutputSourceCodeService
 
 
 def ResultListSortFunction(a, b):  # utility function
@@ -49,7 +55,7 @@ def SetDataParametersAndFit(inRawData, inEquation, inPrintStatus):
     inRawData : numpy array or string
         The input data used to parameterise the equation.
 
-    inEquation : pyeq3.IModel object
+    inEquation : IModel object
         The equation to parameterise
 
     inPrintStatus : boolean
@@ -59,9 +65,9 @@ def SetDataParametersAndFit(inRawData, inEquation, inPrintStatus):
     ------
     t : dictionary
         A dictionary containing the equation and fitting information
-        required to instantiate a new pyeq3.IModel object.
+        required to instantiate a new IModel object.
     """
-    pyeq3.dataConvertorService().ProcessData(inRawData, inEquation, False)
+    dataConvertorService().ProcessData(inRawData, inEquation, False)
     return SetParametersAndFit(inEquation, inPrintStatus)
 
 
@@ -71,7 +77,7 @@ def SetParametersAndFit(inEquation, inPrintStatus):
 
     Arguments
     ---------
-    inEquation : pyeq3.IModel object
+    inEquation : IModel object
         The equation to parameterise
 
     inPrintStatus : boolean
@@ -81,7 +87,7 @@ def SetParametersAndFit(inEquation, inPrintStatus):
     ------
     t : dictionary
         A dictionary containing the equation and fitting information
-        required to instantiate a new pyeq3.IModel object.
+        required to instantiate a new IModel object.
     """
     try:
         # check for number of coefficients > number of data points to be fitted
@@ -154,9 +160,9 @@ def SubmitTasksToQueue(
     ##########################
     # add named equations here
     if inDimension == 2:
-        models = pyeq3.Models_2D
+        models = Models_2D
     elif inDimension == 3:
-        models = pyeq3.Models_3D
+        models = Models_3D
     for submodule in inspect.getmembers(models):
         if inspect.ismodule(submodule[1]):
             for equationClass in inspect.getmembers(submodule[1]):
@@ -222,11 +228,11 @@ def SubmitTasksToQueue(
 
     if inDimension == 2:
         polyfunctionalEquationList = (
-            pyeq3.PolyFunctions.GenerateListForPolyfunctionals_2D()
+            PolyFunctions.GenerateListForPolyfunctionals_2D()
         )
     else:
         polyfunctionalEquationList = (
-            pyeq3.PolyFunctions.GenerateListForPolyfunctionals_3D()
+            PolyFunctions.GenerateListForPolyfunctionals_3D()
         )
 
     # make a list of function indices to permute
@@ -295,9 +301,9 @@ def SubmitTasksToQueue(
     maxCoeffs = smoothnessControl
 
     if inDimension == 2:
-        functionList = pyeq3.PolyFunctions.GenerateListForRationals_2D()
+        functionList = PolyFunctions.GenerateListForRationals_2D()
     else:
-        functionList = pyeq3.PolyFunctions.GenerateListForRationals_3D()
+        functionList = PolyFunctions.GenerateListForRationals_3D()
 
     # make a list of function indices
     functionIndexList = list(range(len(functionList)))
@@ -503,7 +509,7 @@ def InstantiateModel(result, data):
 
     Returns
     -------
-    equation : pyeq3.IModel object
+    equation : IModel object
         The fully instantiated equation object
     """
     # now instantiate the "best fit" equation based on the name stored in the
@@ -541,7 +547,7 @@ def InstantiateModel(result, data):
             f"'{result['extendedVersionHandlerName']}')"
         )
 
-    pyeq3.dataConvertorService().ProcessData(data, equation, False)
+    dataConvertorService().ProcessData(data, equation, False)
     equation.fittingTarget = result["fittingTarget"]
     equation.solvedCoefficients = result["solvedCoefficients"]
     equation.dataCache.FindOrCreateAllDataCache(equation)
@@ -564,6 +570,12 @@ def FitDataToAllModelsAndOutput(
     max_n_functions,
     number_of_cpus,
 ):
+    # Lazy import to avoid hard dependency on matplotlib and pypandoc
+    # for users who don't need plotting or documentation features
+    import matplotlib.pyplot as plt
+    from matplotlib.backends.backend_pdf import PdfPages
+    import pypandoc
+
     # The data to fit
     data = np.loadtxt(datafile)
 
@@ -611,14 +623,14 @@ def FitDataToAllModelsAndOutput(
         for i in range(max_n_functions):
             equation = equations[i]
             outfile.write(
-                pyeq3.outputSourceCodeService().GetOutputSourceCodePYTHON(
+                outputSourceCodeService().GetOutputSourceCodePYTHON(
                     equation, note=f"Equation {i}"
                 )
             )
 
             fig = plt.figure(figsize=(8, 6), dpi=100)
             axes = fig.add_subplot(111)
-            pyeq3.Graphics.Graphics2D.ModelScatterConfidenceGraph(equation, axes)
+            ModelScatterConfidenceGraph(equation, axes)
             axes.set_title(
                 f"{i}) {equation.__module__}.{equation.__class__.__name__} "
                 f"({equation.CalculateAllDataFittingTarget(equation.solvedCoefficients):.6e})"
