@@ -59,7 +59,7 @@ pull request at `https://github.com/equations-project/pyeq3/pulls <https://githu
 Requirements
 ------------
 
-  - Python 3.7+
+  - Python 3.10+
   - Python modules: NumPy, SciPy, ODRPACK
   - Optional dependencies for output: Matplotlib, pypandoc
 
