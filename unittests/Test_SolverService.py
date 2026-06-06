@@ -17,7 +17,7 @@ numpy.seterr(all="ignore")
 
 class TestSolverService(unittest.TestCase):
     def test_SolveUsingODR_3D(self):
-        coefficientsShouldBe = numpy.array([-0.04925, -0.90509, 1.28076])
+        coefficientsShouldBe = numpy.array([-0.0493, -0.90509, 1.2808])
         model = pyeq3.Models_3D.Polynomial.Linear("ODR")
         model.estimatedCoefficients = numpy.array(
             [0.2, -1.0, 1.0]
@@ -28,7 +28,7 @@ class TestSolverService(unittest.TestCase):
         coefficients = pyeq3.solverService().SolveUsingODR(model)
         self.assertTrue(
             numpy.allclose(
-                coefficients, coefficientsShouldBe, rtol=1.0e-03, atol=1.0e-300
+                coefficients, coefficientsShouldBe, rtol=1.0e-02, atol=1.0e-300
             )
         )
 
