@@ -1,4 +1,4 @@
-import DataForUnitTests
+from . import DataForUnitTests
 import pyeq3
 import sys
 import os
