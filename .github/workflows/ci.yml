@@ -11,6 +11,11 @@ jobs:
       matrix:
         python-version: ["3.10", "3.11", "3.12", "3.13"]
         numpy-version: ["<2", ">=2"]
+        # NumPy 1.x only supports up to Python 3.12, so exclude Python 3.13 when testing with NumPy 1.x.
+        # See https://numpy.org/doc/stable/release/1.26.0-notes.html#python-3-13-support
+        exclude:
+          - python-version: "3.13"
+            numpy-version: "<2"
 
     steps:
       - name: Checkout repo
