@@ -7,7 +7,7 @@ if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
     sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 
 import pyeq3
-import DataForUnitTests
+from . import DataForUnitTests
 
 import numpy
 

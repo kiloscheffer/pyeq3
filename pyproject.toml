@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyeq3"
-version = "12.6.2a0"
+version = "12.7.0a0"
 description = "An equation, curve and surface fitting library"
 readme = "README.md"
 readme-content-type = "text/x-rst"
@@ -13,15 +13,14 @@ classifiers = [
     "Development Status :: 6 - Mature",
     "Intended Audience :: Developers",
     "Topic :: Scientific/Engineering :: Mathematics",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11"
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13"
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
 # Explicit range rather than caret: "^1.24" caps at <2.0, but the odrpack-based
 # fitting path runs fine on numpy 2.x. Allow both 1.x and 2.x; cap at the next
 # major.
