@@ -31,6 +31,10 @@ class DataConverterService(object):
 
     # data is in columns
     def ConvertAndSortColumnarASCII(self, inRawData, inModel, inUseWeightsFlag):
+        """
+        Converts and sorts columnar ASCII data and updates the model object
+        with that processed data.
+        """
         # you should first process commas before calling this method,
         # as it uses the default token delimiters in string split()
         #

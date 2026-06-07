@@ -112,10 +112,10 @@ class TestModelSolveMethods(unittest.TestCase):
 
     def test_SplineReconstructionFromStoredCoefficients_2D(self):
         # Simulate a fit reloaded from storage: a fresh instance that has only
-        # solvedCoefficients (round-tripped through JSON, so lists rather than
-        # the original numpy arrays) and no live scipy object. Rebuilding from
-        # the stored values must reproduce the predictions and keep the spline
-        # source-code emittable.
+        # solvedCoefficients as lists rather than the original numpy arrays,
+        # and no live scipy spline object. Rebuilding from
+        # the stored values must reproduce the predictions and
+        # allow the source-code output service to work.
         model = pyeq3.Models_2D.Spline.Spline(inSmoothingFactor=1.0, inXOrder=3)
         pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
             model.exampleData, model, False
