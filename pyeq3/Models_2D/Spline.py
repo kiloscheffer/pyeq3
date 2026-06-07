@@ -58,22 +58,22 @@ class Spline(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         if getattr(self, "scipySpline", None) is None:
-            self.RebuildScipySpline()
+            self.BuildSplineFromSolvedCoefficients()
         result = self.scipySpline(inDataCacheDictionary["X"])
         return result
 
-    def RebuildScipySpline(self):
-        # Rebuild the live scipy spline from solvedCoefficients when it was not
-        # produced in this process (e.g. a fit reloaded from storage). Here
+    def BuildSplineFromSolvedCoefficients(self):
+        """
+        Build a scipy UnivariateSpline spline from solvedCoefficients.
+        """
         # solvedCoefficients is the UnivariateSpline _eval_args tuple
-        # (knots, coefficients, degree). Rebuild the same UnivariateSpline type
-        # rather than a bare BSpline so consumers that read _eval_args (the
-        # source-code output) keep working, not just prediction. asarray/int
-        # restore the array/scalar types after a list-based reload (e.g. JSON).
+        # (knots, coefficients, degree).
         knots, coefficients, degree = self.solvedCoefficients
         spline = scipy.interpolate.UnivariateSpline.__new__(
             scipy.interpolate.UnivariateSpline
         )
+
+        # restore the array/scalar types after a list-based reload (e.g. JSON).
         spline._eval_args = (
             numpy.asarray(knots),
             numpy.asarray(coefficients),

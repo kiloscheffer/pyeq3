@@ -61,15 +61,16 @@ class Spline(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         if getattr(self, "scipySpline", None) is None:
-            self.RebuildScipySpline()
+            self.BuildSplineFromSolvedCoefficients()
         result = self.scipySpline.ev(
             inDataCacheDictionary["X"], inDataCacheDictionary["Y"]
         )
         return result
 
-    def RebuildScipySpline(self):
-        # Rebuild the live scipy spline from solvedCoefficients when it was not
-        # produced in this process (e.g. a fit reloaded from storage). Here
+    def BuildSplineFromSolvedCoefficients(self):
+        """
+        Build a scipy SmoothBivariateSpline spline from solvedCoefficients.
+        """
         # solvedCoefficients is SmoothBivariateSpline.tck, the
         # (xKnots, yKnots, coefficients) tuple. The spline degrees are not
         # stored in tck, so take them from the model's xOrder and yOrder.
