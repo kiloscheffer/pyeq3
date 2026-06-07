@@ -166,6 +166,35 @@ class TestSolverService(unittest.TestCase):
         coefficients = pyeq3.solverService().SolveUsingDE(model)
         self.assertEqual(len(coefficients), 2)
 
+    def test_solvedCoefficients_isOneDimensionalNumpyArray_forAnalyticModel(self):
+        # Contract: after Solve(), an analytic equation's solvedCoefficients
+        # is a 1-D numpy array of floats, one entry per coefficient designator.
+        model = pyeq3.Models_2D.Polynomial.Linear("SSQABS")
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            DataForUnitTests.asciiDataInColumns_2D, model, False
+        )
+        model.Solve()
+        self.assertFalse(model.splineFlag)
+        self.assertIsInstance(model.solvedCoefficients, numpy.ndarray)
+        self.assertEqual(model.solvedCoefficients.ndim, 1)
+        self.assertEqual(
+            len(model.solvedCoefficients),
+            len(model.GetCoefficientDesignators()),
+        )
+
+    def test_solvedCoefficients_isTckTuple_forSplineModel(self):
+        # Contract: after Solve(), a spline model's solvedCoefficients is the
+        # scipy tck representation (a tuple), NOT a coefficient array.
+        # 2D: UnivariateSpline._eval_args == (knots, coefficients, degree).
+        model = pyeq3.Models_2D.Spline.Spline(inSmoothingFactor=1.0, inXOrder=3)
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            DataForUnitTests.asciiDataInColumns_2D, model, False
+        )
+        model.Solve()
+        self.assertTrue(model.splineFlag)
+        self.assertIsInstance(model.solvedCoefficients, tuple)
+        self.assertEqual(len(model.solvedCoefficients), 3)
+
     def test_SolveUsingSpline_3D(self):
         xKnotPointsShouldBe = numpy.array([0.607, 0.607, 0.607, 3.017, 3.017, 3.017])
         yKnotPointsShouldBe = numpy.array([1.984, 1.984, 1.984, 3.153, 3.153, 3.153])
