@@ -46,7 +46,7 @@ for functionString, estimatedCoefficients in [
 
     # Print some data to standard output
     # pyeq3.Output.Print.DatumInformation(equation)
-    pyeq3.Output.Print.FitStatistics(equation)
+    pyeq3.Output.Print.FitStatistics(equation, precision=2)
 
     # Plot the fitted curve
     plt.plot(x_new, y_new, label=functionString)

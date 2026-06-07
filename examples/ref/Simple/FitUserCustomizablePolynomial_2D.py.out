@@ -7,96 +7,96 @@ Coefficients: ['a', 'b', 'c']
 Coefficient values: [-3.63308874  0.32554319  0.07819714]
 Fitting target value SSQABS: 0.014598264987360443
 
-X: 5.357
-Y: 0.376
-Model: 0.3549046886764837
-Abs. Error: -0.021095311323516275
-Rel. Error: -0.05610455139233052
-Percent Error: -5.610455139233052
-X: 5.457
-Y: 0.489
-Model: 0.4720213997438829
-Abs. Error: -0.016978600256117082
-Rel. Error: -0.03472106391843984
-Percent Error: -3.472106391843984
-X: 5.797
-Y: 0.874
-Model: 0.8819165102062481
-Abs. Error: 0.007916510206248062
-Rel. Error: 0.009057791997995494
-Percent Error: 0.9057791997995495
-X: 5.936
-Y: 1.049
-Model: 1.0546977200391754
-Abs. Error: 0.005697720039175458
-Rel. Error: 0.005431572963942286
-Percent Error: 0.5431572963942286
-X: 6.161
-Y: 1.327
-Model: 1.340783880660248
-Abs. Error: 0.013783880660247938
-Rel. Error: 0.010387249932364687
-Percent Error: 1.0387249932364686
-X: 6.697
-Y: 2.054
-Model: 2.0542009924586186
-Abs. Error: 0.00020099245861882054
-Rel. Error: 9.785416680565752e-05
-Percent Error: 0.009785416680565751
-X: 6.731
-Y: 2.077
-Model: 2.1009705236456253
-Abs. Error: 0.023970523645625352
-Rel. Error: 0.011540935794716106
-Percent Error: 1.1540935794716105
-X: 6.775
-Y: 2.138
-Model: 2.161764171899691
-Abs. Error: 0.023764171899691267
-Rel. Error: 0.011115141206590864
-Percent Error: 1.1115141206590864
-X: 8.442
-Y: 4.744
-Model: 4.6880512255767925
-Abs. Error: -0.055948774423207226
-Rel. Error: -0.011793586514166786
-Percent Error: -1.1793586514166785
-X: 9.769
-Y: 7.068
-Model: 7.009758999220253
-Abs. Error: -0.0582410007797467
-Rel. Error: -0.00824009631858329
-Percent Error: -0.8240096318583291
-X: 9.861
-Y: 7.104
-Model: 7.180929887872943
-Abs. Error: 0.07692988787294297
-Rel. Error: 0.010829094576709315
-Percent Error: 1.0829094576709315
+X: 5.35700E+00
+Y: 3.76000E-01
+Model Prediction: 3.54905E-01
+Abs. Error: -2.10953E-02
+Rel. Error: -5.61046E-02
+Percent Error: -5.61046E+00
+X: 5.45700E+00
+Y: 4.89000E-01
+Model Prediction: 4.72021E-01
+Abs. Error: -1.69786E-02
+Rel. Error: -3.47211E-02
+Percent Error: -3.47211E+00
+X: 5.79700E+00
+Y: 8.74000E-01
+Model Prediction: 8.81917E-01
+Abs. Error: 7.91651E-03
+Rel. Error: 9.05779E-03
+Percent Error: 9.05779E-01
+X: 5.93600E+00
+Y: 1.04900E+00
+Model Prediction: 1.05470E+00
+Abs. Error: 5.69772E-03
+Rel. Error: 5.43157E-03
+Percent Error: 5.43157E-01
+X: 6.16100E+00
+Y: 1.32700E+00
+Model Prediction: 1.34078E+00
+Abs. Error: 1.37839E-02
+Rel. Error: 1.03872E-02
+Percent Error: 1.03872E+00
+X: 6.69700E+00
+Y: 2.05400E+00
+Model Prediction: 2.05420E+00
+Abs. Error: 2.00992E-04
+Rel. Error: 9.78542E-05
+Percent Error: 9.78542E-03
+X: 6.73100E+00
+Y: 2.07700E+00
+Model Prediction: 2.10097E+00
+Abs. Error: 2.39705E-02
+Rel. Error: 1.15409E-02
+Percent Error: 1.15409E+00
+X: 6.77500E+00
+Y: 2.13800E+00
+Model Prediction: 2.16176E+00
+Abs. Error: 2.37642E-02
+Rel. Error: 1.11151E-02
+Percent Error: 1.11151E+00
+X: 8.44200E+00
+Y: 4.74400E+00
+Model Prediction: 4.68805E+00
+Abs. Error: -5.59488E-02
+Rel. Error: -1.17936E-02
+Percent Error: -1.17936E+00
+X: 9.76900E+00
+Y: 7.06800E+00
+Model Prediction: 7.00976E+00
+Abs. Error: -5.82410E-02
+Rel. Error: -8.24010E-03
+Percent Error: -8.24010E-01
+X: 9.86100E+00
+Y: 7.10400E+00
+Model Prediction: 7.18093E+00
+Abs. Error: 7.69299E-02
+Rel. Error: 1.08291E-02
+Percent Error: 1.08291E+00
 
-Degrees of freedom error 8
-Degrees of freedom regression 2
-Root Mean Squared Error (RMSE): 0.036429589605854046
-R-squared: 0.9997645214104851
-R-squared adjusted: 0.9997056517631064
-Model F-statistic: 16982.68234866009
-Model F-statistic p-value: 3.0747209227270833e-15
-Model log-likelihood: 20.82778940110356
-Model AIC: -3.2414162547461016
-Model BIC: -3.1328993621647276
+Degrees of freedom error: 8
+Degrees of freedom regression: 2
+Root Mean Squared Error (RMSE): 3.64296E-02
+R-squared: 9.99765E-01
+R-squared adjusted: 9.99706E-01
+Model F-statistic: 1.69827E+04
+Model F-statistic p-value: 3.07472E-15
+Model log-likelihood: 2.08278E+01
+Model AIC: -3.24142E+00
+Model BIC: -3.13290E+00
 
 Individual Parameter Statistics:
-Coefficient ['a', 'b', 'c'] = -3.6330887435333636E+00, std error: 1.71307E-01
+Coefficient a = -3.63309E+00, std error: 1.71307E-01
           t-stat: -8.77786E+00, p-stat: 2.22605E-05, 95 percent confidence intervals: [-4.58753E+00, -2.67865E+00]
-Coefficient ['a', 'b', 'c'] = 3.2554318889398082E-01, std error: 1.26460E-02
+Coefficient b = 3.25543E-01, std error: 1.26460E-02
           t-stat: 2.89489E+00, p-stat: 2.00482E-02, 95 percent confidence intervals: [6.62229E-02, 5.84863E-01]
-Coefficient ['a', 'b', 'c'] = 7.8197144606992480E-02, std error: 5.33270E-05
+Coefficient c = 7.81971E-02, std error: 5.33270E-05
           t-stat: 1.07082E+01, p-stat: 5.08132E-06, 95 percent confidence intervals: [6.13575E-02, 9.50368E-02]
 
 Coefficient Covariance Matrix:
-[ 93.87785376 -25.43707933   1.63915023]
-[-25.43707933   6.93013369  -0.44880068]
-[ 1.63915023 -0.44880068  0.02922374]
+[[ 93.87785 -25.43708   1.63915]
+ [-25.43708   6.93013  -0.4488 ]
+ [  1.63915  -0.4488    0.02922]]
 
 Java Source Code:
 // If there are any errors or problems with this

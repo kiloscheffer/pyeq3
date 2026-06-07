@@ -32,8 +32,8 @@ equation.Solve()
 
 # Printing and plotting
 print(equation)
-Print.DatumInformation(equation)
-Print.FitStatistics(equation)
+Print.DatumInformation(equation, precision=5)
+Print.FitStatistics(equation, precision=5)
 
 fig = plt.figure(figsize=(8, 6), dpi=100)
 axes = fig.add_subplot(111)

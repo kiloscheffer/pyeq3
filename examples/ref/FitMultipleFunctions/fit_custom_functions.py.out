@@ -1,66 +1,66 @@
-Degrees of freedom error 8
-Degrees of freedom regression 2
-Root Mean Squared Error (RMSE): 0.03642958960585393
-R-squared: 0.9997645214104851
-R-squared adjusted: 0.9997056517631064
-Model F-statistic: 16982.68234866009
-Model F-statistic p-value: 3.0747209227270833e-15
-Model log-likelihood: 20.827789401103594
-Model AIC: -3.241416254746108
-Model BIC: -3.132899362164734
+Degrees of freedom error: 8
+Degrees of freedom regression: 2
+Root Mean Squared Error (RMSE): 3.64E-02
+R-squared: 1.00E+00
+R-squared adjusted: 1.00E+00
+Model F-statistic: 1.70E+04
+Model F-statistic p-value: 3.07E-15
+Model log-likelihood: 2.08E+01
+Model AIC: -3.24E+00
+Model BIC: -3.13E+00
 
 Individual Parameter Statistics:
-Coefficient ['a', 'b', 'c'] = 6.3669113422146637E+00, std error: 1.71349E-01
-          t-stat: 1.53811E+01, p-stat: 3.17183E-07, 95 percent confidence intervals: [5.41236E+00, 7.32147E+00]
-Coefficient ['a', 'b', 'c'] = 3.2554316492243096E-01, std error: 1.26494E-02
-          t-stat: 2.89450E+00, p-stat: 2.00603E-02, 95 percent confidence intervals: [6.61874E-02, 5.84899E-01]
-Coefficient ['a', 'b', 'c'] = 7.8197146138003312E-02, std error: 5.33424E-05
-          t-stat: 1.07067E+01, p-stat: 5.08685E-06, 95 percent confidence intervals: [6.13550E-02, 9.50392E-02]
+Coefficient a = 6.37E+00, std error: 1.71E-01
+          t-stat: 1.54E+01, p-stat: 3.17E-07, 95 percent confidence intervals: [5.41E+00, 7.32E+00]
+Coefficient b = 3.26E-01, std error: 1.26E-02
+          t-stat: 2.89E+00, p-stat: 2.01E-02, 95 percent confidence intervals: [6.62E-02, 5.85E-01]
+Coefficient c = 7.82E-02, std error: 5.33E-05
+          t-stat: 1.07E+01, p-stat: 5.09E-06, 95 percent confidence intervals: [6.14E-02, 9.50E-02]
 
 Coefficient Covariance Matrix:
-[ 93.90128224 -25.44374486   1.63959613]
-[-25.44374486   6.93202674  -0.44892716]
-[ 1.63959613 -0.44892716  0.02923218]
-Degrees of freedom error 9
-Degrees of freedom regression 1
-Root Mean Squared Error (RMSE): 0.14264938659503965
-R-squared: 0.99638937250295
-R-squared adjusted: 0.9959881916699445
-Model F-statistic: 2483.6415165655603
-Model F-statistic p-value: 2.6457213754446703e-12
-Model log-likelihood: 5.812696650167272
-Model AIC: -0.6932175727576858
-Model BIC: -0.6208729777034365
+[[ 93.9  -25.44   1.64]
+ [-25.44   6.93  -0.45]
+ [  1.64  -0.45   0.03]]
+Degrees of freedom error: 9
+Degrees of freedom regression: 1
+Root Mean Squared Error (RMSE): 1.43E-01
+R-squared: 9.96E-01
+R-squared adjusted: 9.96E-01
+Model F-statistic: 2.48E+03
+Model F-statistic p-value: 2.65E-12
+Model log-likelihood: 5.81E+00
+Model AIC: -6.93E-01
+Model BIC: -6.21E-01
 
 Individual Parameter Statistics:
-Coefficient ['a', 'b'] = 1.9808643620550397E+00, std error: 4.82099E-02
-          t-stat: 9.02166E+00, p-stat: 8.37177E-06, 95 percent confidence intervals: [1.48417E+00, 2.47756E+00]
-Coefficient ['a', 'b'] = 1.5264472936405975E+00, std error: 9.38146E-04
-          t-stat: 4.98364E+01, p-stat: 2.64560E-12, 95 percent confidence intervals: [1.45716E+00, 1.59574E+00]
+Coefficient a = 1.98E+00, std error: 4.82E-02
+          t-stat: 9.02E+00, p-stat: 8.37E-06, 95 percent confidence intervals: [1.48E+00, 2.48E+00]
+Coefficient b = 1.53E+00, std error: 9.38E-04
+          t-stat: 4.98E+01, p-stat: 2.65E-12, 95 percent confidence intervals: [1.46E+00, 1.60E+00]
 
 Coefficient Covariance Matrix:
-[ 1.93841445 -0.26398728]
-[-0.26398728  0.03772075]
-Degrees of freedom error 8
-Degrees of freedom regression 2
-Root Mean Squared Error (RMSE): 0.07325985720385939
-R-squared: 0.9990476973258262
-R-squared adjusted: 0.9988096216572828
-Model F-statistic: 4196.345235269211
-Model F-statistic p-value: 8.224320295028965e-13
-Model log-likelihood: 13.142843313577604
-Model AIC: -1.8441533297413826
-Model BIC: -1.7356364371600086
+[[ 1.94 -0.26]
+ [-0.26  0.04]]
+Degrees of freedom error: 8
+Degrees of freedom regression: 2
+Root Mean Squared Error (RMSE): 7.33E-02
+R-squared: 9.99E-01
+R-squared adjusted: 9.99E-01
+Model F-statistic: 4.20E+03
+Model F-statistic p-value: 8.22E-13
+Model log-likelihood: 1.31E+01
+Model AIC: -1.84E+00
+Model BIC: -1.74E+00
 
 Individual Parameter Statistics:
-Coefficient ['a', 'b', 'c'] = 3.1228796249828275E+00, std error: 7.27104E-02
-          t-stat: 1.15813E+01, p-stat: 2.80893E-06, 95 percent confidence intervals: [2.50107E+00, 3.74469E+00]
-Coefficient ['a', 'b', 'c'] = 1.3354460776628720E+00, std error: 1.91210E-03
-          t-stat: 3.05402E+01, p-stat: 1.43514E-09, 95 percent confidence intervals: [1.23461E+00, 1.43628E+00]
-Coefficient ['a', 'b', 'c'] = -4.7131088793744743E-05, std error: 9.94770E-11
-          t-stat: -4.72548E+00, p-stat: 1.49159E-03, 95 percent confidence intervals: [-7.01308E-05, -2.41314E-05]
+Coefficient a = 3.12E+00, std error: 7.27E-02
+          t-stat: 1.16E+01, p-stat: 2.81E-06, 95 percent confidence intervals: [2.50E+00, 3.74E+00]
+Coefficient b = 1.34E+00, std error: 1.91E-03
+          t-stat: 3.05E+01, p-stat: 1.44E-09, 95 percent confidence intervals: [1.23E+00, 1.44E+00]
+Coefficient c = -4.71E-05, std error: 9.95E-11
+          t-stat: -4.73E+00, p-stat: 1.49E-03, 95 percent confidence intervals: [-7.01E-05, -2.41E-05]
 
 Coefficient Covariance Matrix:
-[ 9.85284938e+00 -1.58766692e+00 -3.26628072e-04]
-[-1.58766692e+00  2.59104557e-01  5.46281517e-05]
-[-3.26628072e-04  5.46281517e-05  1.34799399e-08]
+[[ 9.85 -1.59 -0.  ]
+ [-1.59  0.26  0.  ]
+ [-0.    0.    0.  ]]
