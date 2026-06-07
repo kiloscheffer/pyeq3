@@ -150,6 +150,22 @@ class TestSolverService(unittest.TestCase):
             )
         )
 
+    def test_SolveUsingDE_emptyNumpyArrayEstimate_doesNotRaise(self):
+        # Regression for issue #16: assigning an EMPTY numpy array to
+        # estimatedCoefficients used to crash on the DE path. The check
+        # `if inModel.estimatedCoefficients != []` evaluated
+        # `numpy.array([]) != []`, which is an empty bool array, and `if`
+        # on it raises "The truth value of an empty array is ambiguous".
+        model = pyeq3.Models_2D.UserDefinedFunction.UserDefinedFunction(
+            "SSQABS", "Default", "m*X + b"
+        )
+        model.estimatedCoefficients = numpy.array([])
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            DataForUnitTests.asciiDataInColumns_2D_small, model, False
+        )
+        coefficients = pyeq3.solverService().SolveUsingDE(model)
+        self.assertEqual(len(coefficients), 2)
+
     def test_SolveUsingSpline_3D(self):
         xKnotPointsShouldBe = numpy.array([0.607, 0.607, 0.607, 3.017, 3.017, 3.017])
         yKnotPointsShouldBe = numpy.array([1.984, 1.984, 1.984, 3.153, 3.153, 3.153])
