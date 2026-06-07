@@ -1,6 +1,5 @@
 import inspect
 
-
 # named equations only
 for modelsTypeName in ["Models_2D", "Models_3D"]:
     modelsFile = open(modelsTypeName + ".js", "wt")

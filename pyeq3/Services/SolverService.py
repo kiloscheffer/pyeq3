@@ -272,9 +272,7 @@ class SolverService(object):
         ydata = inModel.dataCache.allDataCacheDictionary["DependentData"]
         weights = inModel.dataCache.allDataCacheDictionary["Weights"]
         weight_y = weights if len(weights) else None
-        maxit = (
-            len(inModel.GetCoefficientDesignators()) * self.fminIterationLimit
-        )
+        maxit = len(inModel.GetCoefficientDesignators()) * self.fminIterationLimit
 
         results = []
 
@@ -364,7 +362,7 @@ class SolverService(object):
             list1 = data[0]
             list2 = inModel.dataCache.allDataCacheDictionary["DependentData"]
 
-            (list1, list2) = [
+            list1, list2 = [
                 list(x)
                 for x in zip(*sorted(zip(list1, list2), key=lambda pair: pair[0]))
             ]

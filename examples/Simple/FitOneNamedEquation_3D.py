@@ -1,6 +1,5 @@
 import pyeq3
 
-
 # see IModel.fittingTargetDictionary
 equation = pyeq3.Models_3D.Polynomial.SimplifiedQuadratic("SSQABS")
 

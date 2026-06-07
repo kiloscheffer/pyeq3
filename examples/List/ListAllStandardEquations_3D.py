@@ -4,7 +4,6 @@ import inspect
 
 import pyeq3
 
-
 for submodule in inspect.getmembers(pyeq3.Models_3D):
     if inspect.ismodule(submodule[1]):
         for equationClass in inspect.getmembers(submodule[1]):

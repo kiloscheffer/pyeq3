@@ -1,6 +1,5 @@
 import pyeq3
 
-
 # print all possible extended version names
 print("List of all possible extended version names")
 for extendedVersionName in pyeq3.ExtendedVersionHandlers.extendedVersionHandlerNameList:

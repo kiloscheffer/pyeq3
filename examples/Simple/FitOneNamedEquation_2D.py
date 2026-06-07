@@ -1,6 +1,5 @@
 import pyeq3
 
-
 # see IModel.fittingTargetDictionary
 equation = pyeq3.Models_2D.BioScience.HyperbolicLogistic()  # SSQABS by default
 

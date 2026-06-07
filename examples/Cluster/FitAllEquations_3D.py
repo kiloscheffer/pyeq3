@@ -3,7 +3,6 @@ import dispy
 
 import pyeq3
 
-
 # Standard lowest sum-of-squared errors in this example,
 # see IModel.fittingTargetDictionary
 fittingTargetString = "SSQABS"

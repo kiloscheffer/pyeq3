@@ -172,9 +172,9 @@ for submodule in inspect.getmembers(pyeq3.Models_3D):
                         equationInstance.numberOfReducedDataPoints
                         not in reducedDataCache
                     ):
-                        reducedDataCache[
-                            equationInstance.numberOfReducedDataPoints
-                        ] = equationInstance.dataCache.reducedDataCacheDictionary
+                        reducedDataCache[equationInstance.numberOfReducedDataPoints] = (
+                            equationInstance.dataCache.reducedDataCacheDictionary
+                        )
 
 
 # Sort the result list by fitting target value

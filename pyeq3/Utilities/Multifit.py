@@ -227,13 +227,9 @@ def SubmitTasksToQueue(
     maxPolyfunctionalCoefficients = smoothnessControl
 
     if inDimension == 2:
-        polyfunctionalEquationList = (
-            PolyFunctions.GenerateListForPolyfunctionals_2D()
-        )
+        polyfunctionalEquationList = PolyFunctions.GenerateListForPolyfunctionals_2D()
     else:
-        polyfunctionalEquationList = (
-            PolyFunctions.GenerateListForPolyfunctionals_3D()
-        )
+        polyfunctionalEquationList = PolyFunctions.GenerateListForPolyfunctionals_3D()
 
     # make a list of function indices to permute
     functionIndexList = list(range(len(polyfunctionalEquationList)))

@@ -1,6 +1,5 @@
 import pyeq3
 
-
 functionString = "m*X+B * (3/2)"
 
 # note that the constructor is passed the function string here
