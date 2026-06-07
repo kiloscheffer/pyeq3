@@ -15,6 +15,9 @@ import inspect
 if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
     sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 
+import numpy
+import scipy.interpolate
+
 import pyeq3
 import pyeq3.Model_3D_BaseClass
 
@@ -57,10 +60,30 @@ class Spline(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         return True  # splines do not have coefficient bounds
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
+        if getattr(self, "scipySpline", None) is None:
+            self.RebuildScipySpline()
         result = self.scipySpline.ev(
             inDataCacheDictionary["X"], inDataCacheDictionary["Y"]
         )
         return result
+
+    def RebuildScipySpline(self):
+        # Rebuild the live scipy spline from solvedCoefficients when it was not
+        # produced in this process (e.g. a fit reloaded from storage). Here
+        # solvedCoefficients is SmoothBivariateSpline.tck, the
+        # (xKnots, yKnots, coefficients) tuple. The spline degrees are not
+        # stored in tck, so take them from the model's xOrder and yOrder.
+        xKnots, yKnots, coefficients = self.solvedCoefficients
+        spline = scipy.interpolate.SmoothBivariateSpline.__new__(
+            scipy.interpolate.SmoothBivariateSpline
+        )
+        spline.tck = (
+            numpy.asarray(xKnots),
+            numpy.asarray(yKnots),
+            numpy.asarray(coefficients),
+        )
+        spline.degrees = (int(self.xOrder), int(self.yOrder))
+        self.scipySpline = spline
 
     def GetCoefficientDesignators(self):
         raise NotImplementedError(

@@ -1,5 +1,6 @@
 from . import DataForUnitTests
 import pyeq3
+import json
 import sys
 import os
 import unittest
@@ -108,6 +109,81 @@ class TestModelSolveMethods(unittest.TestCase):
             numpy.allclose(result[1], resultShouldBe[1], rtol=1.0e-06, atol=1.0e-300)
         )
         self.assertEqual(result[2], resultShouldBe[2])
+
+    def test_SplineReconstructionFromStoredCoefficients_2D(self):
+        # Simulate a fit reloaded from storage: a fresh instance that has only
+        # solvedCoefficients (round-tripped through JSON, so lists rather than
+        # the original numpy arrays) and no live scipy object. Rebuilding from
+        # the stored values must reproduce the predictions and keep the spline
+        # source-code emittable.
+        model = pyeq3.Models_2D.Spline.Spline(inSmoothingFactor=1.0, inXOrder=3)
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            model.exampleData, model, False
+        )
+        model.Solve()
+        before = model.CalculateModelPredictions(
+            model.solvedCoefficients, model.dataCache.allDataCacheDictionary
+        )
+
+        knots, coeffs, degree = model.solvedCoefficients
+        stored = json.loads(json.dumps([knots.tolist(), coeffs.tolist(), int(degree)]))
+
+        reloaded = pyeq3.Models_2D.Spline.Spline()
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            model.exampleData, reloaded, False
+        )
+        reloaded.solvedCoefficients = stored
+        reloaded.dataCache.FindOrCreateAllDataCache(reloaded)
+        after = reloaded.CalculateModelPredictions(
+            reloaded.solvedCoefficients, reloaded.dataCache.allDataCacheDictionary
+        )
+        self.assertTrue(numpy.allclose(after, before, rtol=1.0e-10, atol=1.0e-300))
+
+        # source-code output reads UnivariateSpline._eval_args; a bare BSpline
+        # would not have it, so this also guards the reconstructed object type
+        sourceCode = pyeq3.outputSourceCodeService().GetOutputSourceCodePYTHON(reloaded)
+        self.assertTrue(len(sourceCode) > 0)
+
+    def test_SplineReconstructionFromStoredCoefficients_3D(self):
+        # Same reload for the bivariate surface. The 3D tck carries no degrees,
+        # so the rebuild also needs the stored xOrder and yOrder.
+        model = pyeq3.Models_3D.Spline.Spline(
+            inSmoothingFactor=1.0, inXOrder=2, inYOrder=2
+        )
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            model.exampleData, model, False
+        )
+        model.Solve()
+        before = model.CalculateModelPredictions(
+            model.solvedCoefficients, model.dataCache.allDataCacheDictionary
+        )
+
+        xKnots, yKnots, coeffs = model.solvedCoefficients
+        stored = json.loads(
+            json.dumps(
+                {
+                    "coefficients": [xKnots.tolist(), yKnots.tolist(), coeffs.tolist()],
+                    "xOrder": model.xOrder,
+                    "yOrder": model.yOrder,
+                }
+            )
+        )
+
+        reloaded = pyeq3.Models_3D.Spline.Spline()
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            model.exampleData, reloaded, False
+        )
+        reloaded.xOrder = stored["xOrder"]
+        reloaded.yOrder = stored["yOrder"]
+        reloaded.solvedCoefficients = stored["coefficients"]
+        reloaded.dataCache.FindOrCreateAllDataCache(reloaded)
+        after = reloaded.CalculateModelPredictions(
+            reloaded.solvedCoefficients, reloaded.dataCache.allDataCacheDictionary
+        )
+        self.assertTrue(numpy.allclose(after, before, rtol=1.0e-10, atol=1.0e-300))
+
+        sourceCode = pyeq3.outputSourceCodeService().GetOutputSourceCodePYTHON(reloaded)
+        self.assertTrue(len(sourceCode) > 0)
 
 
 if __name__ == "__main__":
