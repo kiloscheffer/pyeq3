@@ -20,6 +20,33 @@ numpy.seterr(all="ignore")
 
 
 class IModel(object):
+    """Abstract base class for all pyeq3 equations.
+
+    Coefficient attribute contracts
+    -------------------------------
+    estimatedCoefficients : list or numpy.ndarray
+        Optional starting values for the non-linear and ODR solvers. A Python
+        list or a numpy array is accepted; an empty value (the default ``[]``)
+        means "no initial estimate", in which case Differential Evolution
+        supplies the starting point.
+
+    solvedCoefficients : numpy.ndarray or tuple
+        Assigned by ``Solve()``. For every analytic equation this is a
+        one-dimensional ``numpy.ndarray`` of floats whose length equals
+        ``len(self.GetCoefficientDesignators())``. For spline models
+        (``splineFlag is True``) it is instead the scipy spline ``tck``
+        representation, not a coefficient array:
+
+        * 2D: ``UnivariateSpline._eval_args`` == ``(knots, coefficients, degree)``
+        * 3D: ``SmoothBivariateSpline.tck`` == ``(xKnots, yKnots, coefficients)``;
+          the spline degrees are ``(xOrder, yOrder)`` and are not part of the
+          tuple.
+
+        Branch on ``splineFlag`` to distinguish the two cases, and use
+        ``BuildSplineFromSolvedCoefficients()`` to rebuild the live scipy
+        spline object.
+    """
+
     splineFlag = False
     userSelectablePolynomialFlag = False
     userCustomizablePolynomialFlag = False
