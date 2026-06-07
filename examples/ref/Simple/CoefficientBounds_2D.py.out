@@ -1,21 +1,18 @@
 Fitted Parameters With No Bounds:
-    a = -8.0191356407516992E+00
-    b = 1.5264472941853224E+00
-sum of squared absolute error = 0.22383732245535296
+    a = -8.01914E+00
+    b = 1.52645E+00
+sum of squared absolute error = 2.23837E-01
 
 Fitted Parameters With One Upper Bound:
-    a = -9.0000000000000000E+00
-    b = 1.6600287053779597E+00
-sum of squared absolute error = 0.7201645681736285
+    a = -9.00000E+00
+    b = 1.66003E+00
+sum of squared absolute error = 7.20165E-01
 Fitted Parameters With One Lower Bound:
-    a = -8.0000000000000000E+00
-    b = 1.5238412602158600E+00
-sum of squared absolute error = 0.224026224311727
+    a = -8.00000E+00
+    b = 1.52384E+00
+sum of squared absolute error = 2.24026E-01
 
 Fitted Parameters With One Upper Bound And One Fixed Coefficient (fixed coeffs override bounds):
-    a = -8.5000000000000000E+00
-    b = 1.5919349834733536E+00
-sum of squared absolute error = 0.3431249458651859
-  coeffs, unused = scipy.optimize.curve_fit(
-  coeffs, unused = scipy.optimize.curve_fit(
-  coeffs, unused = scipy.optimize.curve_fit(
+    a = -8.50000E+00
+    b = 1.59193E+00
+sum of squared absolute error = 3.43125E-01

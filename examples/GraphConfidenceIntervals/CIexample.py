@@ -31,7 +31,6 @@ print("Fitting data...")
 equation.Solve()
 
 # Printing and plotting
-print(equation)
 Print.DatumInformation(equation, precision=5)
 Print.FitStatistics(equation, precision=5)
 

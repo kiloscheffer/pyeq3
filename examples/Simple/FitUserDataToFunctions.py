@@ -26,11 +26,11 @@ print(f"Equation: {equation.GetDisplayName()} {equation.GetDimensionality()}D")
 print(
     f"Minimizing {equation.fittingTargetDictionary[equation.fittingTarget]}"
     ": "
-    f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)}"
+    f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients):.5E}"
 )
 print("Fitted Parameters:")
 for i, coeff in enumerate(equation.solvedCoefficients):
-    print(f"    {equation.GetCoefficientDesignators()[i]} = {coeff:.16E}")
+    print(f"    {equation.GetCoefficientDesignators()[i]} = {coeff:.5E}")
 
 
 equation = pyeq3.Models_3D.BioScience.HighLowAffinityIsotopeDisplacement("SSQABS")
@@ -73,8 +73,8 @@ print(f"Equation: {equation.GetDisplayName()} {equation.GetDimensionality()}D")
 print(
     f"Minimizing {equation.fittingTargetDictionary[equation.fittingTarget]}"
     ": "
-    f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)}"
+    f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients):.5E}"
 )
 print("Fitted Parameters:")
 for i, coeff in enumerate(equation.solvedCoefficients):
-    print(f"    {equation.GetCoefficientDesignators()[i]} = {coeff:.16E}")
+    print(f"    {equation.GetCoefficientDesignators()[i]} = {coeff:.5E}")

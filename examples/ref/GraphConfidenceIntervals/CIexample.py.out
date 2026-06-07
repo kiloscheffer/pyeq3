@@ -1,13 +1,4 @@
 Fitting data...
-pyeq3.Models_2D.Polynomial.Linear (2D)
-Polyfunctional flags: []
-Polyfunctional order: None
-Rational numerator flags: []
-Rational denominator flags: []
-Coefficients: ['a', 'b']
-Coefficient values: [-8.01913564  1.52644729]
-Fitting target value SSQABS: 0.22383732245535296
-
 X: 5.35700E+00
 Y: 3.76000E-01
 Model Prediction: 1.58043E-01

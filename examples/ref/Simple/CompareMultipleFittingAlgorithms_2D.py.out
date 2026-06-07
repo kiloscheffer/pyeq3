@@ -1,22 +1,13 @@
 It is very rare for an algorithm to fit better than Levenberg-Marquardt,
 This example shows how to construct a test to determine if this is true.
 
-SSQABS of 0.0073132062485885335 for the fitting algorithm Levenberg-Marquardt
-Coefficients: [ 0.87518862  0.31626218  0.01557028 -3.66802384]
-SSQABS of 0.017271824241693223 for the fitting algorithm NelderMead
-Coefficients: [ 4.42949920e+04 -1.16058098e-01  8.59159484e+01 -1.03584827e+01]
-SSQABS of 0.007313206248588701 for the fitting algorithm Powell
-Coefficients: [ 3.61001484e+03 -3.16262192e-01  6.42249363e+01 -3.66802368e+00]
-SSQABS of 61.994022545454534 for the fitting algorithm CG
-Coefficients: [0.37925986 6.62828502 0.84549412 2.66363636]
-SSQABS of 61.99402254545454 for the fitting algorithm BFGS
-Coefficients: [0.10145455 6.03962282 1.50436932 2.66363636]
-SSQABS of 0.017271824241693223 for the fitting algorithm Newton-CG
-Coefficients: [ 4.42949920e+04 -1.16058098e-01  8.59159484e+01 -1.03584827e+01]
-SSQABS of 0.017271824241693223 for the fitting algorithm Anneal
-Coefficients: [ 4.42949920e+04 -1.16058098e-01  8.59159484e+01 -1.03584827e+01]
-SSQABS of 61.99402254545435 for the fitting algorithm COBYLA
-Coefficients: [-0.10837662  5.2733398   1.54759453  2.66363637]
-SSQABS of 61.99402254545454 for the fitting algorithm SLSQP
-Coefficients: [0.36435258 6.24980052 1.06868966 2.66363635]
-  coeffs, unused = scipy.optimize.curve_fit(
+SSQABS = 7.31E-03 for the fitting algorithm Levenberg-Marquardt
+Coefficients: [ 0.87519  0.31626  0.01557 -3.66802]
+Algorithm NelderMead did not fit better than Levenberg-Marquardt.
+Algorithm Powell did not fit better than Levenberg-Marquardt.
+Algorithm CG did not fit better than Levenberg-Marquardt.
+Algorithm BFGS did not fit better than Levenberg-Marquardt.
+Algorithm Newton-CG did not fit better than Levenberg-Marquardt.
+Algorithm Anneal did not fit better than Levenberg-Marquardt.
+Algorithm COBYLA did not fit better than Levenberg-Marquardt.
+Algorithm SLSQP did not fit better than Levenberg-Marquardt.

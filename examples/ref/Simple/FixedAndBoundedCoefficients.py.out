@@ -1,30 +1,27 @@
 2D example: 1st Order (Linear)
 Fitted parameters with no bounds:
-    a = -8.0191356407516992E+00
-    b = 1.5264472941853224E+00
-sum of squared absolute error = 0.22383732245535296
+    a = -8.01914E+00
+    b = 1.52645E+00
+sum of squared absolute error = 2.23837E-01
 
 Fitted parameters with one upper bound:
-    a = -9.0000000000000000E+00
-    b = 1.6600287053779597E+00
-sum of squared absolute error = 0.7201645681736285
+    a = -9.00000E+00
+    b = 1.66003E+00
+sum of squared absolute error = 7.20165E-01
 
 Fitted parameters with one lower bound:
-    a = -8.0000000000000000E+00
-    b = 1.5238412602158600E+00
-sum of squared absolute error = 0.224026224311727
+    a = -8.00000E+00
+    b = 1.52384E+00
+sum of squared absolute error = 2.24026E-01
 
 Fitted parameters with one upper bound and one fixed coefficient (fixed coefficients override bounds):
-    a = -8.5000000000000000E+00
-    b = 1.5919349834733536E+00
-sum of squared absolute error = 0.3431249458651859
+    a = -8.50000E+00
+    b = 1.59193E+00
+sum of squared absolute error = 3.43125E-01
 
 3D example: High-Low Affinity Isotope Displacement (y = [Hot])
 Fitted parameters with one fixed coefficient:
-    a = 2.0000000000000000E+00
-    b = -7.3541129508683545E-01
-sum of squared absolute error = 7.5478577366365025
+    a = 2.00000E+00
+    b = -7.35411E-01
+sum of squared absolute error = 7.54786E+00
 
-  coeffs, unused = scipy.optimize.curve_fit(
-  coeffs, unused = scipy.optimize.curve_fit(
-  coeffs, unused = scipy.optimize.curve_fit(

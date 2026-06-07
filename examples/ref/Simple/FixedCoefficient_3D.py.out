@@ -3,5 +3,3 @@ sum of squared absolute error = 7.5478577366365025
 Fitted Parameters:
     a = 2.0000000000000000E+00
     b = -7.3541129508683545E-01
-  coeffs, unused = scipy.optimize.curve_fit(
-  coeffs, unused = scipy.optimize.curve_fit(

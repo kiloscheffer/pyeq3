@@ -45,8 +45,11 @@ for functionString, estimatedCoefficients in [
     y_new = equation.CalculateModelPredictionsFromNewData(x_new)
 
     # Print some data to standard output
-    # pyeq3.Output.Print.DatumInformation(equation)
-    pyeq3.Output.Print.FitStatistics(equation, precision=2)
+    np_precision = np.get_printoptions()["precision"]
+    np.set_printoptions(precision=5)
+    print(equation.GetCoefficientDesignators())
+    print(equation.solvedCoefficients)
+    np.set_printoptions(precision=np_precision)
 
     # Plot the fitted curve
     plt.plot(x_new, y_new, label=functionString)

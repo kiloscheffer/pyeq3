@@ -1,10 +1,10 @@
 Equation: User Defined Function 2D
-Minimizing sum of squared absolute error: 0.2239466657841567
+Minimizing sum of squared absolute error: 2.23947E-01
 Fitted Parameters:
-    B = 1.3243655145437350E+00
-    m = 1.5258339318190508E+00
+    B = 1.32437E+00
+    m = 1.52583E+00
 Equation: High-Low Affinity Isotope Displacement (y = [Hot]) 3D
-Minimizing sum of squared absolute error: 7.547845144534719
+Minimizing sum of squared absolute error: 7.54785E+00
 Fitted Parameters:
-    a = 2.0027602851963500E+00
-    b = -7.3736053610014329E-01
+    a = 2.00276E+00
+    b = -7.37361E-01

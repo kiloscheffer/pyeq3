@@ -42,7 +42,7 @@ class custom_prng_for_diffev(numpy.random.mtrand.RandomState):
 
 class SolverService(object):
     # these are taken from docs for scipy.optimize.minimize,
-    # except for 'Levenberg=Marquardt'.
+    # except for 'Levenberg-Marquardt'.
     # The algorithms 'L-BFGS-B' and 'TNC' are not on the list
     # as they are bounded versions of other algorithms listed here.
     ListOfNonLinearSolverAlgorithmNames = [
@@ -69,11 +69,12 @@ class SolverService(object):
             inModel.fittingTarget == "SSQABS"
         ):
             raise Exception("This equation cannot use a linear SSQ solver")
-        inModel.solvedCoefficients = numpy.linalg.lstsq(
+        sol = numpy.linalg.lstsq(
             inModel.dataCache.FindOrCreateAllDataCache(inModel).T,
             inModel.dataCache.allDataCacheDictionary["DependentData"],
-            rcond=None,
-        )[0]
+            rcond=-1,
+        )
+        inModel.solvedCoefficients = sol[0]
         return inModel.solvedCoefficients
 
     def SolveUsingSimplex(self, inModel):
@@ -174,7 +175,7 @@ class SolverService(object):
         # try with initial coefficients equal to 1
         try:
             if inAlgorithmName == "Levenberg-Marquardt":
-                coeffs, unused = scipy.optimize.curve_fit(
+                coeffs, _ = scipy.optimize.curve_fit(
                     inModel.WrapperForScipyCurveFit,
                     None,
                     inModel.dataCache.allDataCacheDictionary["DependentData"],

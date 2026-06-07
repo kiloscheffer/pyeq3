@@ -1,4 +1,9 @@
 import pyeq3
+import numpy as np
+
+np_precision = np.get_printoptions()["precision"]
+precision = 5
+np.set_printoptions(precision=precision, suppress=True)
 
 equation = pyeq3.Models_2D.Polynomial.Linear()
 
@@ -14,14 +19,13 @@ equation.Solve()
 print("Fitted Parameters With No Bounds:")
 for i in range(len(equation.solvedCoefficients)):
     print(
-        "    %s = %-.16E"
+        f"    %s = %-.{precision}E"
         % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i])
     )
-print(
-    equation.fittingTargetDictionary[equation.fittingTarget],
-    "=",
-    equation.CalculateAllDataFittingTarget(equation.solvedCoefficients),
-)
+
+target = equation.fittingTargetDictionary[equation.fittingTarget]
+value = equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)
+print(f"{target} = {value:.{precision}E}")
 print()
 
 ##########################################################
@@ -35,14 +39,13 @@ equation.Solve()
 print("Fitted Parameters With One Upper Bound:")
 for i in range(len(equation.solvedCoefficients)):
     print(
-        "    %s = %-.16E"
+        f"    %s = %-.{precision}E"
         % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i])
     )
-print(
-    equation.fittingTargetDictionary[equation.fittingTarget],
-    "=",
-    equation.CalculateAllDataFittingTarget(equation.solvedCoefficients),
-)
+
+target = equation.fittingTargetDictionary[equation.fittingTarget]
+value = equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)
+print(f"{target} = {value:.{precision}E}")
 ()
 
 ##########################################################
@@ -57,14 +60,13 @@ equation.Solve()
 print("Fitted Parameters With One Lower Bound:")
 for i in range(len(equation.solvedCoefficients)):
     print(
-        "    %s = %-.16E"
+        f"    %s = %-.{precision}E"
         % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i])
     )
-print(
-    equation.fittingTargetDictionary[equation.fittingTarget],
-    "=",
-    equation.CalculateAllDataFittingTarget(equation.solvedCoefficients),
-)
+
+target = equation.fittingTargetDictionary[equation.fittingTarget]
+value = equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)
+print(f"{target} = {value:.{precision}E}")
 print()
 
 ##########################################################
@@ -85,11 +87,12 @@ print(
 )
 for i in range(len(equation.solvedCoefficients)):
     print(
-        "    %s = %-.16E"
+        f"    %s = %-.{precision}E"
         % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i])
     )
-print(
-    equation.fittingTargetDictionary[equation.fittingTarget],
-    "=",
-    equation.CalculateAllDataFittingTarget(equation.solvedCoefficients),
-)
+
+target = equation.fittingTargetDictionary[equation.fittingTarget]
+value = equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)
+print(f"{target} = {value:.{precision}E}")
+
+np.set_printoptions(precision=np_precision)

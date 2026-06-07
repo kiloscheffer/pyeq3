@@ -14,15 +14,14 @@ equation.estimatedCoefficients = [2.0, 3.0e13]
 
 equation.Solve()
 
-print(equation.GetDisplayName(), str(equation.GetDimensionality()) + "D")
-print(
-    equation.fittingTargetDictionary[equation.fittingTarget],
-    "=",
-    equation.CalculateAllDataFittingTarget(equation.solvedCoefficients),
-)
+dim = equation.GetDimensionality()
+target = equation.fittingTargetDictionary[equation.fittingTarget]
+value = equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)
+print(equation.GetDisplayName(), str(dim) + "D")
+print(f"{target} = {value:.2E}")
 print("Fitted Parameters:")
 for i in range(len(equation.solvedCoefficients)):
     print(
-        "    %s = %-.16E"
+        "    %s = %-.5E"
         % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i])
     )
