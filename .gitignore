@@ -7,3 +7,4 @@ examples/List/model_list.rst
 *.pyc
 *DS_Store
 dist/*
+.coverage

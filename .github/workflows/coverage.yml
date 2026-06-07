@@ -1,0 +1,62 @@
+name: CodeCoverage
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:  
+  run:
+    runs-on: [ubuntu-24.04]
+
+    strategy:
+      matrix:
+        python-versions: ['3.13']
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-versions }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-versions }}
+
+    - name: Setup
+      run: |
+        sudo apt update && sudo apt install --yes \
+         numdiff \
+         texlive \
+         texlive-latex-extra
+        python -m pip install --upgrade pip
+        pip install coverage
+        python --version
+
+    - name: Check coverage change
+      run: |
+        mkdir main
+        cd main
+        git clone https://github.com/equations-project/pyeq3
+        cd pyeq3
+        git status
+        python -m pip install -e .[output]
+        python -m pip uninstall -y numba
+        coverage run -m unittest discover -s unittests -t . -p "Test_*.py" -v
+        coverage report > main_coverage.tmp
+        main_coverage=$(coverage report --precision=7 --format=total)
+        cd ../..
+        rm -fr main
+        python -m pip install -q -e .[output]
+        python -m pip uninstall -y numba
+        coverage run -m unittest discover -s unittests -t . -p "Test_*.py" -v
+        coverage html -d htmlcov
+        coverage report > new_coverage.tmp
+        new_coverage=$(coverage report --precision=7 --format=total)
+        echo "Main coverage: $main_coverage"
+        echo "New coverage: $new_coverage"
+        if (( $(echo "$new_coverage < $main_coverage" | bc -l) )); then
+          diff main_coverage.tmp new_coverage.tmp
+          echo "Coverage ($new_coverage %) decreased relative to main ($main_coverage %)"
+          exit 1
+        fi
+      
+    - name: Upload HTML coverage report
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-html
+        path: htmlcov/
