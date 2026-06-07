@@ -1,6 +1,5 @@
 import pyeq3
 
-
 equation = pyeq3.Models_2D.Polynomial.Linear()
 
 pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(

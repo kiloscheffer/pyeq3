@@ -1,6 +1,5 @@
 import pyeq3
 
-
 # parameters are smoothing, xOrder, yOrder
 equation = pyeq3.Models_3D.Spline.Spline(1.0, 3, 3)  # cubic 3D spline
 

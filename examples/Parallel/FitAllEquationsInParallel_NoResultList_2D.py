@@ -159,9 +159,9 @@ def ParallelFittingFunction(
                 bestResult = result
 
             if equationInstance.numberOfReducedDataPoints not in reducedDataCache:
-                reducedDataCache[
-                    equationInstance.numberOfReducedDataPoints
-                ] = equationInstance.dataCache.reducedDataCacheDictionary
+                reducedDataCache[equationInstance.numberOfReducedDataPoints] = (
+                    equationInstance.dataCache.reducedDataCacheDictionary
+                )
 
             equationCount += 1
             if (equationCount % 50) == 0:
@@ -212,9 +212,9 @@ def ParallelFittingFunction(
             bestResult = result
 
         if equationInstance.numberOfReducedDataPoints not in reducedDataCache:
-            reducedDataCache[
-                equationInstance.numberOfReducedDataPoints
-            ] = equationInstance.dataCache.reducedDataCacheDictionary
+            reducedDataCache[equationInstance.numberOfReducedDataPoints] = (
+                equationInstance.dataCache.reducedDataCacheDictionary
+            )
 
     ######################
     # fit user-selectable rationals here

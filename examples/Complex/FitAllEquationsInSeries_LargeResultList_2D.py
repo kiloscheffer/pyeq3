@@ -166,9 +166,9 @@ for submodule in inspect.getmembers(pyeq3.Models_2D):
                         equationInstance.numberOfReducedDataPoints
                         not in reducedDataCache
                     ):
-                        reducedDataCache[
-                            equationInstance.numberOfReducedDataPoints
-                        ] = equationInstance.dataCache.reducedDataCacheDictionary
+                        reducedDataCache[equationInstance.numberOfReducedDataPoints] = (
+                            equationInstance.dataCache.reducedDataCacheDictionary
+                        )
 
 
 ##########################
@@ -213,9 +213,9 @@ for coeffCount in range(1, maxPolyfunctionalCoefficients + 1):
         SetParametersAndFit(equationInstance, resultList, False)
 
         if equationInstance.numberOfReducedDataPoints not in reducedDataCache:
-            reducedDataCache[
-                equationInstance.numberOfReducedDataPoints
-            ] = equationInstance.dataCache.reducedDataCacheDictionary
+            reducedDataCache[equationInstance.numberOfReducedDataPoints] = (
+                equationInstance.dataCache.reducedDataCacheDictionary
+            )
 
         equationCount += 1
         if (equationCount % 250) == 0:
@@ -254,9 +254,9 @@ for polynomialOrderX in range(maxPolynomialOrderX + 1):
     SetParametersAndFit(equationInstance, resultList, False)
 
     if equationInstance.numberOfReducedDataPoints not in reducedDataCache:
-        reducedDataCache[
-            equationInstance.numberOfReducedDataPoints
-        ] = equationInstance.dataCache.reducedDataCacheDictionary
+        reducedDataCache[equationInstance.numberOfReducedDataPoints] = (
+            equationInstance.dataCache.reducedDataCacheDictionary
+        )
 
 
 ######################
@@ -320,9 +320,9 @@ for numeratorCoeffCount in range(1, maxCoeffs):
                         equationInstance.numberOfReducedDataPoints
                         not in reducedDataCache
                     ):
-                        reducedDataCache[
-                            equationInstance.numberOfReducedDataPoints
-                        ] = equationInstance.dataCache.reducedDataCacheDictionary
+                        reducedDataCache[equationInstance.numberOfReducedDataPoints] = (
+                            equationInstance.dataCache.reducedDataCacheDictionary
+                        )
 
                     equationCount += 1
                     if (equationCount % 5) == 0:
