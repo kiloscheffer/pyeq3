@@ -141,7 +141,7 @@ class SolverService(object):
         numpy.random.shuffle(pop0)
         pop0 = pop0.reshape(oneThirdOfPopulationSizeForGA * 3, numberOfCoefficients)
 
-        if inModel.estimatedCoefficients != []:
+        if len(inModel.estimatedCoefficients) > 0:
             # DE will overwrite these values, so use deepcopy
             pop0[0] = copy.deepcopy(inModel.estimatedCoefficients)
 
