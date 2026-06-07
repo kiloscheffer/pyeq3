@@ -1,0 +1,9 @@
+pyeq3.Models_2D.UserDefinedFunction.UserDefinedFunction (2D)
+Polyfunctional flags: []
+Polyfunctional order: None
+Rational numerator flags: []
+Rational denominator flags: []
+Coefficients: ['B', 'm']
+Coefficient values: [-5.34609042  1.52644729]
+Fitting target value SSQABS: 0.22383732245535187
+

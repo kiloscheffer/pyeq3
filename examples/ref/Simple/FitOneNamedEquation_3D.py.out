@@ -1,0 +1,262 @@
+pyeq3.Models_3D.Polynomial.SimplifiedQuadratic (3D)
+Polyfunctional flags: []
+Polyfunctional order: None
+Rational numerator flags: []
+Rational denominator flags: []
+Coefficients: ['a', 'b', 'c', 'd', 'f']
+Coefficient values: [10.88895187 -1.44949526 -6.66151101  0.12017154  1.49577871]
+Fitting target value SSQABS: 0.2595107129336552
+
+X: 2.972
+Y: 2.106
+Z: 0.313
+Model: 0.24749059695719833
+Abs. Error: -0.06550940304280167
+Rel. Error: -0.20929521738914272
+Percent Error: -20.92952173891427
+X: 2.843
+Y: 1.984
+Z: 0.315
+Model: 0.4106712912223669
+Abs. Error: 0.0956712912223669
+Rel. Error: 0.30371838483291075
+Percent Error: 30.371838483291075
+X: 3.017
+Y: 2.175
+Z: 0.32
+Model: 0.19684245794386435
+Abs. Error: -0.12315754205613566
+Rel. Error: -0.3848673189254239
+Percent Error: -38.486731892542394
+X: 2.822
+Y: 2.624
+Z: 0.629
+Model: 0.5746783373190834
+Abs. Error: -0.05432166268091665
+Rel. Error: -0.0863619438488341
+Percent Error: -8.63619438488341
+X: 2.485
+Y: 2.32
+Z: 0.639
+Model: 0.6252162168530813
+Abs. Error: -0.013783783146918749
+Rel. Error: -0.021570865644630278
+Percent Error: -2.157086564463028
+X: 2.719
+Y: 2.542
+Z: 0.643
+Model: 0.568005780450628
+Abs. Error: -0.07499421954937202
+Rel. Error: -0.11663175668642616
+Percent Error: -11.663175668642616
+X: 2.632
+Y: 2.839
+Z: 0.95
+Model: 1.0501880101280552
+Abs. Error: 0.10018801012805523
+Rel. Error: 0.10546106329268971
+Percent Error: 10.546106329268971
+X: 2.163
+Y: 2.444
+Z: 0.954
+Model: 0.9696811987528013
+Abs. Error: 0.015681198752801384
+Rel. Error: 0.01643731525450879
+Percent Error: 1.643731525450879
+X: 2.495
+Y: 2.721
+Z: 0.956
+Model: 0.9690682964126083
+Abs. Error: 0.013068296412608316
+Rel. Error: 0.013669766121975227
+Percent Error: 1.3669766121975226
+X: 1.687
+Y: 2.525
+Z: 1.459
+Model: 1.5018666624094017
+Abs. Error: 0.042866662409401624
+Rel. Error: 0.02938085154859604
+Percent Error: 2.938085154859604
+X: 2.287
+Y: 3.03
+Z: 1.574
+Model: 1.7507140774282313
+Abs. Error: 0.1767140774282312
+Rel. Error: 0.11227069722251029
+Percent Error: 11.227069722251029
+X: 2.07
+Y: 2.878
+Z: 1.597
+Model: 1.6209525455730098
+Abs. Error: 0.023952545573009854
+Rel. Error: 0.01499846310144637
+Percent Error: 1.499846310144637
+X: 2.207
+Y: 3.057
+Z: 1.725
+Model: 1.8894385634917956
+Abs. Error: 0.16443856349179553
+Rel. Error: 0.09532670347350465
+Percent Error: 9.532670347350464
+X: 1.969
+Y: 2.899
+Z: 1.758
+Model: 1.7599005631029296
+Abs. Error: 0.001900563102929631
+Rel. Error: 0.0010810939152045684
+Percent Error: 0.10810939152045684
+X: 1.408
+Y: 2.547
+Z: 1.775
+Model: 1.8228588435575839
+Abs. Error: 0.04785884355758396
+Rel. Error: 0.026962728764836037
+Percent Error: 2.6962728764836035
+X: 1.279
+Y: 2.554
+Z: 1.927
+Model: 1.97496870578341
+Abs. Error: 0.04796870578340995
+Rel. Error: 0.024892945398759702
+Percent Error: 2.4892945398759703
+X: 2.048
+Y: 3.098
+Z: 2.035
+Model: 2.142952139330399
+Abs. Error: 0.10795213933039882
+Rel. Error: 0.05304773431469229
+Percent Error: 5.304773431469229
+X: 1.768
+Y: 2.929
+Z: 2.088
+Model: 2.0226604391299983
+Abs. Error: -0.06533956087000181
+Rel. Error: -0.031292893136974045
+Percent Error: -3.1292893136974045
+X: 1.963
+Y: 3.115
+Z: 2.204
+Model: 2.2699285080299507
+Abs. Error: 0.06592850802995054
+Rel. Error: 0.029913116166039262
+Percent Error: 2.991311616603926
+X: 1.677
+Y: 2.939
+Z: 2.24
+Model: 2.1380485153128532
+Abs. Error: -0.10195148468714699
+Rel. Error: -0.0455140556639049
+Percent Error: -4.55140556639049
+X: 1.016
+Y: 2.564
+Z: 2.243
+Model: 2.293591064798389
+Abs. Error: 0.05059106479838915
+Rel. Error: 0.02255508907641068
+Percent Error: 2.255508907641068
+X: 1.784
+Y: 3.144
+Z: 2.57
+Model: 2.5271040150197273
+Abs. Error: -0.04289598498027258
+Rel. Error: -0.016691044739405674
+Percent Error: -1.6691044739405674
+X: 0.742
+Y: 2.568
+Z: 2.581
+Model: 2.636926398532566
+Abs. Error: 0.05592639853256598
+Rel. Error: 0.02166850001261758
+Percent Error: 2.166850001261758
+X: 1.479
+Y: 2.957
+Z: 2.583
+Model: 2.388791628078236
+Abs. Error: -0.1942083719217642
+Rel. Error: -0.075187135858213
+Percent Error: -7.5187135858213
+X: 1.712
+Y: 3.153
+Z: 2.721
+Model: 2.626035722647618
+Abs. Error: -0.094964277352382
+Rel. Error: -0.03490050619345167
+Percent Error: -3.490050619345167
+X: 1.387
+Y: 2.963
+Z: 2.744
+Model: 2.5036203154158727
+Abs. Error: -0.2403796845841275
+Rel. Error: -0.08760192586885113
+Percent Error: -8.760192586885113
+X: 0.607
+Y: 2.571
+Z: 2.753
+Model: 2.8137991063184415
+Abs. Error: 0.06079910631844143
+Rel. Error: 0.022084673562819263
+Percent Error: 2.2084673562819264
+
+Degrees of freedom error 22
+Degrees of freedom regression 4
+Root Mean Squared Error (RMSE): 0.0980382980596444
+R-squared: 0.9851848243796629
+R-squared adjusted: 0.9824911560850562
+Model F-statistic: 365.74095865931184
+Model F-statistic p-value: 8.933419020517443e-20
+Model log-likelihood: 24.39338076686655
+Model AIC: -1.4365467234715963
+Model BIC: -1.1965769334707943
+
+Individual Parameter Statistics:
+Coefficient ['a', 'b', 'c', 'd', 'f'] = 1.0888951874546766E+01, std error: 2.22943E+00
+          t-stat: 7.29272E+00, p-stat: 2.64875E-07, 95 percent confidence intervals: [7.79240E+00, 1.39855E+01]
+Coefficient ['a', 'b', 'c', 'd', 'f'] = -1.4494952645258785E+00, std error: 5.02378E-02
+          t-stat: -6.46698E+00, p-stat: 1.66144E-06, 95 percent confidence intervals: [-1.91433E+00, -9.84662E-01]
+Coefficient ['a', 'b', 'c', 'd', 'f'] = -6.6615110081932025E+00, std error: 1.23666E+00
+          t-stat: -5.99029E+00, p-stat: 4.98483E-06, 95 percent confidence intervals: [-8.96776E+00, -4.35526E+00]
+Coefficient ['a', 'b', 'c', 'd', 'f'] = 1.2017154114049904E-01, std error: 3.73434E-03
+          t-stat: 1.96650E+00, p-stat: 6.19820E-02, 95 percent confidence intervals: [-6.56133E-03, 2.46904E-01]
+Coefficient ['a', 'b', 'c', 'd', 'f'] = 1.4957787062503742E+00, std error: 4.33642E-02
+          t-stat: 7.18293E+00, p-stat: 3.36389E-07, 95 percent confidence intervals: [1.06391E+00, 1.92764E+00]
+
+Coefficient Covariance Matrix:
+[ 188.99940892   -1.42553943 -139.9846918    -0.24389013   26.08058809]
+[-1.42553943  4.25890761 -0.30778119 -1.14488065 -0.16171304]
+[-139.9846918    -0.30778119  104.83748385    0.50545811  -19.56061512]
+[-0.24389013 -1.14488065  0.50545811  0.31657861 -0.03123933]
+[ 26.08058809  -0.16171304 -19.56061512  -0.03123933   3.67619662]
+
+Java Source Code:
+// If there are any errors or problems with this
+// code output please raise an issue on GitHub:
+// github.com/equations-project/pyeq3
+
+import java.lang.Math;
+
+// Fitting target: lowest sum of squared absolute error
+// Fitting target value = 0.2595107129336552
+
+class Polynomial_SimplifiedQuadratic
+{
+	double Polynomial_SimplifiedQuadratic_model(double x_in, double y_in)
+	{
+		double temp;
+		temp = 0.0;
+
+		// coefficients
+		double a = 1.0888951874546766E+01;
+		double b = -1.4494952645258785E+00;
+		double c = -6.6615110081932025E+00;
+		double d = 1.2017154114049904E-01;
+		double f = 1.4957787062503742E+00;
+
+		temp = a;
+		temp += b * x_in;
+		temp += c * y_in;
+		temp += d * Math.pow(x_in, 2.0);
+		temp += f * Math.pow(y_in, 2.0);
+		return temp;
+	}
+}
+

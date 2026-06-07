@@ -1,0 +1,96 @@
+Equation: Spline 3D
+Fitting target of sum of squared absolute error = 7.077937527278984e-06
+
+# If there are any errors or problems with this
+# code output please raise an issue on GitHub:
+# github.com/equations-project/pyeq3
+#
+# the code below was partially based on the fortran code at:
+# http://svn.scipy.org/svn/scipy/trunk/scipy/interpolate/fitpack/fpbisp.f
+# http://svn.scipy.org/svn/scipy/trunk/scipy/interpolate/fitpack/fpbspl.f
+
+def Spline_model(x_in, y_in):
+    tx = [6.0699999999999998E-01, 6.0699999999999998E-01, 6.0699999999999998E-01, 6.0699999999999998E-01, 3.0169999999999999E+00, 3.0169999999999999E+00, 3.0169999999999999E+00, 3.0169999999999999E+00]
+    ty = [1.9840000000000000E+00, 1.9840000000000000E+00, 1.9840000000000000E+00, 1.9840000000000000E+00, 3.1530000000000000E+00, 3.1530000000000000E+00, 3.1530000000000000E+00, 3.1530000000000000E+00]
+    coeff = [3.9952234461583753E+00, 1.1606671256247365E+00, 3.1986687203357818E+00, 4.9199396727886588E+00, 4.8064004425932372E-01, 1.5006171282137764E+00, 1.9033868750512528E+00, 3.1958950796264429E+00, 5.5696432022896425E-01, 7.0561644828416448E-01, 1.0106319305649969E+00, 1.6486909141441244E+00, 2.5368574087221590E-01, 3.8890679770629627E-01, 5.0626226947041031E-01, 9.0738150097863146E-01]
+    nx = 8
+    ny = 8
+    kx = 3
+    ky = 3
+
+    h = [0.0] * 25
+    hh = [0.0] * 25
+    w_x = [0.0] * 25
+    w_y = [0.0] * 25
+
+    kx1 = kx+1
+    nkx1 = nx-kx1
+    l = kx1
+    l1 = l+1
+
+    while x_in >= tx[l1-1] and l != nkx1:
+        l = l1
+        l1 = l+1
+
+    h[0] = 1.0
+    for j in range(1, kx+1):
+        for i in range(j):
+            hh[i] = h[i]
+        h[0] = 0.0
+        for i in range(j):
+            li = l+i
+            lj = li-j
+            if tx[li] != tx[lj]:
+                f = hh[i] / (tx[li] - tx[lj])
+                h[i] = h[i] + f * (tx[li] - x_in)
+                h[i+1] = f * (x_in - tx[lj])
+            else:
+                h[i+1-1] = 0.0
+
+    lx = l-kx1
+    for j in range(kx1):
+        w_x[j] = h[j]
+
+    ky1 = ky+1
+    nky1 = ny-ky1
+    l = ky1
+    l1 = l+1
+
+    while y_in >= ty[l1-1] and l != nky1:
+        l = l1
+        l1 = l+1
+
+    h[0] = 1.0
+    for j in range(1, ky+1):
+        for i in range(j):
+            hh[i] = h[i]
+        h[0] = 0.0
+        for i in range(j):
+            li = l+i
+            lj = li-j
+            if ty[li] != ty[lj]:
+                f = hh[i] / (ty[li] - ty[lj])
+                h[i] = h[i] + f * (ty[li] - y_in)
+                h[i+1] = f * (y_in - ty[lj])
+            else:
+                h[i+1-1] = 0.0
+
+    ly = l-ky1
+    for j in range(ky1):
+        w_y[j] = h[j]
+
+    l = lx*nky1
+    for i1 in range(kx1):
+        h[i1] = w_x[i1]
+
+    l1 = l+ly
+    temp = 0.0
+    for i1 in range(kx1):
+        l2 = l1
+        for j1 in range(ky1):
+            l2 = l2+1
+            temp = temp + coeff[l2-1] * h[i1] * w_y[j1]
+        l1 = l1+nky1
+
+    return temp
+

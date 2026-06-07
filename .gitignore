@@ -4,6 +4,7 @@ pyeq3.egg-info/
 /docs/*pdf
 examples/List/model_list.rst
 *.tmp
+*.tmp.error
 *.pyc
 *DS_Store
 dist/*

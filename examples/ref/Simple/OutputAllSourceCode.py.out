@@ -1,0 +1,227 @@
+// If there are any errors or problems with this
+// code output please raise an issue on GitHub:
+// github.com/equations-project/pyeq3
+
+#include <math.h>
+
+// Fitting target: lowest sum of squared absolute error
+// Fitting target value = 0.014598264987360443
+
+double Polynomial_Quadratic_model(double x_in)
+{
+	double temp;
+	temp = 0.0;
+
+	// coefficients
+	double a = -3.6330887435333636E+00;
+	double b = 3.2554318889398082E-01;
+	double c = 7.8197144606992480E-02;
+
+	temp += a + b * x_in + c * pow(x_in, 2.0);
+	return temp;
+}
+
+// If there are any errors or problems with this
+// code output please raise an issue on GitHub:
+// github.com/equations-project/pyeq3
+
+using System;
+
+// Fitting target: lowest sum of squared absolute error
+// Fitting target value = 0.014598264987360443
+
+class Polynomial_Quadratic
+{
+	double Polynomial_Quadratic_model(double x_in)
+	{
+		double temp;
+		temp = 0.0;
+
+		// coefficients
+		double a = -3.6330887435333636E+00;
+		double b = 3.2554318889398082E-01;
+		double c = 7.8197144606992480E-02;
+
+		temp += a + b * x_in + c * Math.Pow(x_in, 2.0);
+		return temp;
+	}
+}
+
+' If there are any errors or problems with this
+' code output please raise an issue on GitHub:
+' github.com/equations-project/pyeq3
+' Fitting target: lowest sum of squared absolute error
+' Fitting target value = 0.014598264987360443
+
+Public Function Polynomial_Quadratic_model(x_in)
+	temp = 0.0
+
+	' coefficients
+	Const a = -3.6330887435333636E+00
+	Const b = 3.2554318889398082E-01
+	Const c = 7.8197144606992480E-02
+
+	temp = temp + a + b * x_in + c * Application.WorksheetFunction.power(x_in, 2.0)
+	Polynomial_Quadratic_model = temp
+End Function
+
+# If there are any errors or problems with this
+# code output please raise an issue on GitHub:
+# github.com/equations-project/pyeq3
+
+import math
+
+# Fitting target: lowest sum of squared absolute error
+# Fitting target value = 0.014598264987360443
+
+def Polynomial_Quadratic_model(x_in):
+    temp = 0.0
+
+    # coefficients
+    a = -3.6330887435333636E+00
+    b = 3.2554318889398082E-01
+    c = 7.8197144606992480E-02
+
+    temp += a + b * x_in + c * math.pow(x_in, 2.0)
+    return temp
+
+// If there are any errors or problems with this
+// code output please raise an issue on GitHub:
+// github.com/equations-project/pyeq3
+
+import java.lang.Math;
+
+// Fitting target: lowest sum of squared absolute error
+// Fitting target value = 0.014598264987360443
+
+class Polynomial_Quadratic
+{
+	double Polynomial_Quadratic_model(double x_in)
+	{
+		double temp;
+		temp = 0.0;
+
+		// coefficients
+		double a = -3.6330887435333636E+00;
+		double b = 3.2554318889398082E-01;
+		double c = 7.8197144606992480E-02;
+
+		temp += a + b * x_in + c * Math.pow(x_in, 2.0);
+		return temp;
+	}
+}
+
+// If there are any errors or problems with this
+// code output please raise an issue on GitHub:
+// github.com/equations-project/pyeq3
+
+// Fitting target: lowest sum of squared absolute error
+// Fitting target value = 0.014598264987360443
+
+function Polynomial_Quadratic_model(x_in)
+	{
+	var temp;
+	temp = 0.0;
+
+	// coefficients
+	var a = -3.6330887435333636E+00;
+	var b = 3.2554318889398082E-01;
+	var c = 7.8197144606992480E-02;
+
+	temp += a + b * x_in + c * Math.pow(x_in, 2.0);
+	return temp;
+}
+
+// If there are any errors or problems with this
+// code output please raise an issue on GitHub:
+// github.com/equations-project/pyeq3
+
+// Fitting target: lowest sum of squared absolute error
+// Fitting target value = 0.014598264987360443
+
+function y = Polynomial_Quadratic_model(x_in)
+	temp = 0.0;
+
+	// coefficients
+	a = -3.6330887435333636E+00;
+	b = 3.2554318889398082E-01;
+	c = 7.8197144606992480E-02;
+
+	temp = temp + a + b * x_in + c * power(x_in, 2.0);
+
+	y = temp;
+endfunction
+
+% If there are any errors or problems with this
+% code output please raise an issue on GitHub:
+% github.com./equations-project./pyeq3
+
+% Fitting target: lowest sum of squared absolute error
+% Fitting target value = 0.014598264987360443
+
+function y = Polynomial_Quadratic_model(x_in)
+	temp = 0.0;
+
+	% coefficients
+	a = -3.6330887435333636E+00;
+	b = 3.2554318889398082E-01;
+	c = 7.8197144606992480E-02;
+
+	temp = temp + a + b .* x_in + c .* power(x_in, 2.0);
+
+	y = temp;
+
+# If there are any errors or problems with this
+# code output please raise an issue on GitHub:
+# github.com/equations-project/pyeq3
+
+# julia has no power function, only an operator, create
+# a function for pyeq3 automated source code generation
+pow(x,y) = x ^ y
+
+# Fitting target: lowest sum of squared absolute error
+# Fitting target value = 0.014598264987360443
+
+function Polynomial_Quadratic_model(x_in)
+	temp = 0.0
+
+	# coefficients
+	a = -3.6330887435333636E+00
+	b = 3.2554318889398082E-01
+	c = 7.8197144606992480E-02
+
+	temp += a + b * x_in + c * pow(x_in, 2.0)
+
+end
+
+! If there are any errors or problems with this
+! code output please raise an issue on GitHub:
+! github.com/equations-project/pyeq3
+
+! fortran90 has no power function, only an operator, create
+! a function for pyeq3 automated source code generation
+real function pow(a, b)
+real :: a ! input
+real :: b ! input
+real :: c ! output
+c = a**b
+end function pow
+
+! Fitting target: lowest sum of squared absolute error
+! Fitting target value = 0.014598264987360443
+
+real function Polynomial_Quadratic_model(x_in)
+real :: x_in ! input
+ real :: temp ! output
+
+! coefficients
+real :: a = -3.6330887435333636E+00
+real :: b = 3.2554318889398082E-01
+real :: c = 7.8197144606992480E-02
+
+temp = 0.0
+
+temp = temp + a + b * x_in + c * pow(x_in, 2.0)
+
+end function Polynomial_Quadratic_model
+

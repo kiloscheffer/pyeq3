@@ -1,0 +1,128 @@
+pyeq3.Models_2D.BioScience.HyperbolicLogistic (2D)
+Polyfunctional flags: []
+Polyfunctional order: None
+Rational numerator flags: []
+Rational denominator flags: []
+Coefficients: ['a', 'b', 'c']
+Coefficient values: [1.91937101e+15 8.54124913e-01 7.96426190e+14]
+Fitting target value SSQABS: 0.3152149652339428
+
+X: 5.357
+Y: 10.376
+Model: 10.106564130003623
+Abs. Error: -0.2694358699963768
+Rel. Error: -0.025967219544754897
+Percent Error: -2.59672195447549
+X: 5.457
+Y: 10.489
+Model: 10.267486251091729
+Abs. Error: -0.22151374890827213
+Rel. Error: -0.021118671837951387
+Percent Error: -2.111867183795139
+X: 5.797
+Y: 10.874
+Model: 10.811460124088955
+Abs. Error: -0.06253987591104604
+Rel. Error: -0.005751322044422111
+Percent Error: -0.575132204442211
+X: 5.936
+Y: 11.049
+Model: 11.032496586793343
+Abs. Error: -0.016503413206656603
+Rel. Error: -0.0014936567297182191
+Percent Error: -0.1493656729718219
+X: 6.161
+Y: 11.327
+Model: 11.388700403012514
+Abs. Error: 0.061700403012514116
+Rel. Error: 0.0054471972289674335
+Percent Error: 0.5447197228967433
+X: 6.697
+Y: 12.054
+Model: 12.22977133118742
+Abs. Error: 0.17577133118741983
+Rel. Error: 0.014581991968427063
+Percent Error: 1.4581991968427064
+X: 6.731
+Y: 12.077
+Model: 12.282783772903
+Abs. Error: 0.20578377290300054
+Rel. Error: 0.017039312155585042
+Percent Error: 1.7039312155585042
+X: 6.775
+Y: 12.138
+Model: 12.351330177838413
+Abs. Error: 0.21333017783841335
+Rel. Error: 0.017575397745791182
+Percent Error: 1.7575397745791181
+X: 8.442
+Y: 14.744
+Model: 14.90436406548729
+Abs. Error: 0.16036406548728976
+Rel. Error: 0.01087656439821553
+Percent Error: 1.087656439821553
+X: 9.769
+Y: 17.068
+Model: 16.883754828601504
+Abs. Error: -0.18424517139849783
+Rel. Error: -0.010794772170054945
+Percent Error: -1.0794772170054945
+X: 9.861
+Y: 17.104
+Model: 17.019470749074287
+Abs. Error: -0.08452925092571206
+Rel. Error: -0.0049420750073498635
+Percent Error: -0.49420750073498637
+
+Degrees of freedom error 8
+Degrees of freedom regression 2
+Root Mean Squared Error (RMSE): 0.16928055390492566
+R-squared: 0.994916095472624
+R-squared adjusted: 0.99364511934078
+Model F-statistic: 782.796836655899
+Model F-statistic p-value: 6.680201224129073e-10
+Model log-likelihood: 3.9298525748923403
+Model AIC: -0.16906410452588005
+Model BIC: -0.060547211944506185
+
+Individual Parameter Statistics:
+Coefficient ['a', 'b', 'c'] = 1.9193710120215812E+15, std error: 3.26050E+37
+          t-stat: 3.36137E-04, p-stat: 9.99740E-01, 95 percent confidence intervals: [-1.31656E+19, 1.31694E+19]
+Coefficient ['a', 'b', 'c'] = 8.5412491305646565E-01, std error: 4.53658E-04
+          t-stat: 4.01012E+01, p-stat: 1.64514E-10, 95 percent confidence intervals: [8.05009E-01, 9.03241E-01]
+Coefficient ['a', 'b', 'c'] = 7.9642619009866825E+14, std error: 5.61378E+36
+          t-stat: 3.36138E-04, p-stat: 9.99740E-01, 95 percent confidence intervals: [-5.46291E+18, 5.46451E+18]
+
+Coefficient Covariance Matrix:
+[8.27499754e+38 6.89891966e+17 3.43362624e+38]
+[6.89891966e+17 1.15136264e-02 2.86280277e+17]
+[3.43362624e+38 2.86280277e+17 1.42474836e+38]
+
+Java Source Code:
+// If there are any errors or problems with this
+// code output please raise an issue on GitHub:
+// github.com/equations-project/pyeq3
+
+import java.lang.Math;
+
+// Fitting target: lowest sum of squared absolute error
+// Fitting target value = 0.3152149652339428
+
+class BioScience_HyperbolicLogistic
+{
+	double BioScience_HyperbolicLogistic_model(double x_in)
+	{
+		double temp;
+		temp = 0.0;
+
+		// coefficients
+		double a = 1.9193710120215812E+15;
+		double b = 8.5412491305646565E-01;
+		double c = 7.9642619009866825E+14;
+
+		temp = (a * Math.pow(x_in, b)) / (c + Math.pow(x_in, b));
+		return temp;
+	}
+}
+
+  coeffs, unused = scipy.optimize.curve_fit(
