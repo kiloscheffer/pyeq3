@@ -997,11 +997,15 @@ class IModel(object):
             )
 
         if "abs" in stringToConvert:
-            raise Exception(
-                "The parser uses fabs() for the absolute "
-                "value, not abs(). Please use fabs() in "
-                "your text."
-            )
+            # check if the previous character before "abs" is "f",
+            # if not, raise an exception
+            index = stringToConvert.find("abs")
+            if index == 0 or stringToConvert[index - 1] != "f":
+                raise Exception(
+                    "The parser uses fabs() for the absolute "
+                    "value, not abs(). Please use fabs() in "
+                    "your text."
+                )
 
         if "EXP" in stringToConvert:
             raise Exception(

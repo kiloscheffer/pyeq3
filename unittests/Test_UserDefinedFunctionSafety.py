@@ -208,6 +208,32 @@ class TestUserDefinedFunctionSafety(unittest.TestCase):
             numpy.allclose(result, resultShouldBe, rtol=1.0e-06, atol=1.0e-300)
         )
 
+    def test_fabs_not_abs(self):
+        # Check that the cosmetic gate rejects "abs" but not "fabs", and that
+        # fabs() works in a fit. This is a regression test for the pre-existing
+        # over-broad "abs" check, which also caught "fabs" and thus prevented
+        # any user-defined function from using the absolute value.
+
+        # This test should produce an exception:
+        with self.assertRaises(Exception):
+            model = pyeq3.Models_2D.UserDefinedFunction.UserDefinedFunction(
+                "SSQABS", "Default", "abs(a*X)"
+            )
+
+        # This test should succeed:
+        model = pyeq3.Models_2D.UserDefinedFunction.UserDefinedFunction(
+            "SSQABS", "Default", "fabs(a*X)"
+        )
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            DataForUnitTests.asciiDataInColumns_2D_small, model, False
+        )
+        result = model.Solve()
+        resultShouldBe = numpy.array([0.50368388])
+
+        self.assertTrue(
+            numpy.allclose(result, resultShouldBe, rtol=1.0e-06, atol=1.0e-300)
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
