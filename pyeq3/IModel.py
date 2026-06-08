@@ -15,6 +15,7 @@ import scipy.interpolate
 import scipy.stats
 import odrpack
 from itertools import groupby
+from pyeq3 import UdfSafety
 
 numpy.seterr(all="ignore")
 
@@ -918,8 +919,21 @@ class IModel(object):
         return str.isdigit(character) or character == "."
 
     def ConvertStringIntsToStringFloats(self, string):
+        for (
+            function,
+            numberFreeFunction,
+        ) in UdfSafety.numberContainingFunctionsToWords.items():
+            string = string.replace(function, numberFreeFunction)
+
         res = ["".join(g) for _, g in groupby(string, self.IsDigitOrPoint)]
-        return "".join([r + ".0" if r.isnumeric() else r for r in res])
+        newstring = "".join([r + ".0" if r.isnumeric() else r for r in res])
+
+        for (
+            numberFreeFunction,
+            function,
+        ) in UdfSafety.wordsToNumberContainingFunctions.items():
+            newstring = newstring.replace(numberFreeFunction, function)
+        return newstring
 
     def GetSortedCoefficientsFromString(self, string, dim):
         numpySafeTokenList = []

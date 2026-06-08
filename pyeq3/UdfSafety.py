@@ -32,6 +32,65 @@ class UnsafeUDFError(Exception):
     """A UDF expression contained a construct outside safe arithmetic."""
 
 
+# based on http://lybniz2.sourceforge.net/safeeval.html
+functionDictionary = {
+    "Exponents And Logarithms": ["exp", "log", "log10", "log2"],
+    "Trigonometric Functions": [
+        "sin",
+        "cos",
+        "tan",
+        "arcsin",
+        "arccos",
+        "arctan",
+        "hypot",
+        "arctan2",
+        "deg2rad",
+        "rad2deg",
+    ],
+    "Hyperbolic Trig Functions": [
+        "arcsinh",
+        "arccosh",
+        "arctanh",
+        "sinh",
+        "cosh",
+        "tanh",
+    ],
+    "Other Special Functions": ["sinc"],
+    "Miscellaneous": ["sqrt", "square", "fabs", "sign"],
+}
+constantsDictionary = {"Constants": ["pi", "e"]}
+
+# build a set of all the functions that contain numbers
+numberInLetters = {
+    "0": "Zero",
+    "1": "One",
+    "2": "Two",
+    "3": "Three",
+    "4": "Four",
+    "5": "Five",
+    "6": "Six",
+    "7": "Seven",
+    "8": "Eight",
+    "9": "Nine",
+}
+
+numberContainingFunctions = set()
+numberContainingFunctionsToWords = {}
+for functionList in functionDictionary.values():
+    for function in functionList:
+        if any(char.isdigit() for char in function):
+            numberContainingFunctions.add(function)
+
+            numberFreeFunction = function
+            for digit, word in numberInLetters.items():
+                numberFreeFunction = numberFreeFunction.replace(digit, word)
+
+            numberContainingFunctionsToWords[function] = numberFreeFunction
+
+wordsToNumberContainingFunctions = {
+    v: k for k, v in numberContainingFunctionsToWords.items()
+}
+
 # Expression-level nodes that pure arithmetic over named values may use.
 _allowedNodes = (
     ast.Expression,
