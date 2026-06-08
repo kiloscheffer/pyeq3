@@ -1045,6 +1045,15 @@ class IModel(object):
                 "function text"
             )
 
+        # reject anything outside safe arithmetic over X/Y, the coefficients,
+        # and the numpy tokens, before the string is mangled by
+        # ConvertStringIntsToStringFloats and later compiled and eval'd.
+        # stringToConvert is still the clean ProcessAndValidateFunctionString
+        # output here (brackets already []->(), digit-bearing tokens intact).
+        pyeq3.UdfSafety.ValidateUDFExpression(
+            stringToConvert, pyeq3.UdfSafety.CollectAllowedNames(self, dim)
+        )
+
         # now compile code object using safe tokens with integer conversion
         self.safe_dict = locals()
 

@@ -68,6 +68,41 @@ BENIGN = [
     "arctan2(X, a)",
 ]
 
+# Validator-reaching malicious payloads: each contains X (and Y for 3D) and
+# avoids the substrings ProcessAndValidateFunctionString rejects cosmetically
+# (=, ^, ln, abs, EXP, LOG), so the AST validator (not a cosmetic check) is
+# what rejects them end-to-end through ParseAndCompileUserFunctionString.
+GATE_MALICIOUS_2D = [
+    "__import__('os').system('id')*X",
+    "X.__class__",
+    "eval('1')+X",
+    "globals() and X",
+    "'os' and X",
+    "sin(X).real",
+    "a*X + 1j",
+]
+
+GATE_MALICIOUS_3D = [
+    "__import__('os').system('id')*X + Y",
+    "X.__class__ + Y",
+    "sin(X).real + Y",
+]
+
+# Benign payloads that compile cleanly through the full path. Digit-bearing
+# function tokens (log10, arctan2, ...) are excluded: ConvertStringIntsToString-
+# Floats mangles them (log10 -> log10.0), a separate pre-existing bug.
+# Note: fabs() is intentionally absent here. pyeq3's cosmetic gate rejects any
+# string containing the substring "abs" (a pre-existing over-broad check that
+# also catches fabs), so fabs cannot pass the full path. The direct BENIGN list
+# above still covers fabs against the validator itself.
+GATE_BENIGN_2D = [
+    "a + b*X",
+    "a*exp(-b*X)+c",
+    "a*sin(X) + b*sqrt(X)",
+    "a*X**2 + b*X + c",
+    "a*X + pi",
+]
+
 
 class TestUserDefinedFunctionSafety(unittest.TestCase):
     def test_malicious_rejected_directly(self):
@@ -104,6 +139,40 @@ class TestUserDefinedFunctionSafety(unittest.TestCase):
         model.ParseAndCompileUserFunctionString("a*X + b*Y", 3)
         names = pyeq3.UdfSafety.CollectAllowedNames(model, 3)
         self.assertTrue({"X", "Y", "a", "b"} <= names)
+
+    def test_gate_rejects_malicious_2D(self):
+        for expr in GATE_MALICIOUS_2D:
+            with self.subTest(expr=expr):
+                model = pyeq3.Models_2D.UserDefinedFunction.UserDefinedFunction(
+                    "SSQABS", "Default"
+                )
+                with self.assertRaises(pyeq3.UdfSafety.UnsafeUDFError):
+                    model.ParseAndCompileUserFunctionString(expr, 2)
+
+    def test_gate_rejects_malicious_3D(self):
+        for expr in GATE_MALICIOUS_3D:
+            with self.subTest(expr=expr):
+                model = pyeq3.Models_3D.UserDefinedFunction.UserDefinedFunction(
+                    "SSQABS", "Default"
+                )
+                with self.assertRaises(pyeq3.UdfSafety.UnsafeUDFError):
+                    model.ParseAndCompileUserFunctionString(expr, 3)
+
+    def test_gate_accepts_benign_2D(self):
+        for expr in GATE_BENIGN_2D:
+            with self.subTest(expr=expr):
+                model = pyeq3.Models_2D.UserDefinedFunction.UserDefinedFunction(
+                    "SSQABS", "Default"
+                )
+                model.ParseAndCompileUserFunctionString(expr, 2)
+                self.assertIsNotNone(model.userFunctionCodeObject)
+
+    def test_gate_accepts_benign_3D(self):
+        model = pyeq3.Models_3D.UserDefinedFunction.UserDefinedFunction(
+            "SSQABS", "Default"
+        )
+        model.ParseAndCompileUserFunctionString("a*X + b*Y", 3)
+        self.assertIsNotNone(model.userFunctionCodeObject)
 
 
 if __name__ == "__main__":
