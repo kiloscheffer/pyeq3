@@ -234,6 +234,30 @@ class TestUserDefinedFunctionSafety(unittest.TestCase):
             numpy.allclose(result, resultShouldBe, rtol=1.0e-06, atol=1.0e-300)
         )
 
+    def test_digit_bearing_functions(self):
+        # Check that digit-bearing function tokens (log10, arctan2, etc.) are
+        # rejected by the gate due to the ConvertStringIntsToStringFloats bug,
+        # and that they are accepted if the bug is patched. This is a
+        # regression test for the pre-existing bug where ConvertStringIntsTo-
+        # StringFloats mangled digit-bearing function tokens (log10 -> log10.0),
+        # causing them to fail validation and thus be unavailable in UDFs.
+
+        i = 0
+        for expr in pyeq3.UdfSafety.numberContainingFunctions:
+            with self.subTest(expr=expr):
+                model = pyeq3.Models_2D.UserDefinedFunction.UserDefinedFunction(
+                    "SSQABS", "Default", f"{expr}(a*X)"
+                )
+                pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+                    DataForUnitTests.asciiDataInColumns_2D_small, model, False
+                )
+
+                self.assertIsNotNone(model.userFunctionCodeObject)
+            i += 1
+
+        # There should be 5 functions that contain digits
+        self.assertEqual(i, 5)
+
 
 if __name__ == "__main__":
     unittest.main()

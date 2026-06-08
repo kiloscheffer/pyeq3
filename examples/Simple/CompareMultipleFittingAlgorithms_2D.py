@@ -63,9 +63,12 @@ for fittingAlgorithmName in fittingAlgorithmNames[1:]:
     deEstimatedCoefficients = equation.deEstimatedCoefficients
     value = equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)
 
-    if value < LM_value:
+    if value < LM_value * (1.0 - 10.0 ** (-precision)):
         print(
             f"Algorithm {fittingAlgorithmName} fitted better than Levenberg-Marquardt!"
+        )
+        print(
+            f"{fittingTargetText} = {value:.2E} for the fitting algorithm {fittingAlgorithmName}"
         )
     else:
         print(
