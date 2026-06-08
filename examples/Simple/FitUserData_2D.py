@@ -22,8 +22,8 @@ equation.Solve()
 
 print(equation)
 
-pyeq3.Output.Print.DatumInformation(equation)
-pyeq3.Output.Print.FitStatistics(equation)
+pyeq3.Output.Print.DatumInformation(equation, precision=5)
+pyeq3.Output.Print.FitStatistics(equation, precision=5)
 
 print()
 print("Java Source Code:")

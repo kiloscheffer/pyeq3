@@ -16,11 +16,11 @@ print("Fitted parameters with no bounds:")
 for i in range(len(equation.solvedCoefficients)):
     print(
         f"    {equation.GetCoefficientDesignators()[i]} = "
-        f"{equation.solvedCoefficients[i]:.16E}"
+        f"{equation.solvedCoefficients[i]:.5E}"
     )
 print(
     f"{equation.fittingTargetDictionary[equation.fittingTarget]} = "
-    f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)}"
+    f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients):.5E}"
     "\n"
 )
 
@@ -33,11 +33,11 @@ print("Fitted parameters with one upper bound:")
 for i in range(len(equation.solvedCoefficients)):
     print(
         f"    {equation.GetCoefficientDesignators()[i]} = "
-        f"{equation.solvedCoefficients[i]:.16E}"
+        f"{equation.solvedCoefficients[i]:.5E}"
     )
 print(
     f"{equation.fittingTargetDictionary[equation.fittingTarget]} = "
-    f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)}"
+    f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients):.5E}"
     "\n"
 )
 
@@ -51,11 +51,11 @@ print("Fitted parameters with one lower bound:")
 for i in range(len(equation.solvedCoefficients)):
     print(
         f"    {equation.GetCoefficientDesignators()[i]} = "
-        f"{equation.solvedCoefficients[i]:.16E}"
+        f"{equation.solvedCoefficients[i]:.5E}"
     )
 print(
     f"{equation.fittingTargetDictionary[equation.fittingTarget]} = "
-    f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)}"
+    f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients):.5E}"
     "\n"
 )
 
@@ -73,11 +73,11 @@ print(
 for i in range(len(equation.solvedCoefficients)):
     print(
         f"    {equation.GetCoefficientDesignators()[i]} = "
-        f"{equation.solvedCoefficients[i]:.16E}"
+        f"{equation.solvedCoefficients[i]:.5E}"
     )
 print(
     f"{equation.fittingTargetDictionary[equation.fittingTarget]} = "
-    f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)}"
+    f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients):.5E}"
     "\n"
 )
 
@@ -95,10 +95,10 @@ print("Fitted parameters with one fixed coefficient:")
 for i in range(len(equation.solvedCoefficients)):
     print(
         f"    {equation.GetCoefficientDesignators()[i]} = "
-        f"{equation.solvedCoefficients[i]:.16E}"
+        f"{equation.solvedCoefficients[i]:.5E}"
     )
 print(
     f"{equation.fittingTargetDictionary[equation.fittingTarget]} = "
-    f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)}"
+    f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients):.5E}"
     "\n"
 )

@@ -1,0 +1,13 @@
+It is very rare for an algorithm to fit better than Levenberg-Marquardt,
+This example shows how to construct a test to determine if this is true.
+
+SSQABS = 7.31E-03 for the fitting algorithm Levenberg-Marquardt
+Coefficients: [ 0.87519  0.31626  0.01557 -3.66802]
+Algorithm NelderMead did not fit better than Levenberg-Marquardt.
+Algorithm Powell did not fit better than Levenberg-Marquardt.
+Algorithm CG did not fit better than Levenberg-Marquardt.
+Algorithm BFGS did not fit better than Levenberg-Marquardt.
+Algorithm Newton-CG did not fit better than Levenberg-Marquardt.
+Algorithm Anneal did not fit better than Levenberg-Marquardt.
+Algorithm COBYLA did not fit better than Levenberg-Marquardt.
+Algorithm SLSQP did not fit better than Levenberg-Marquardt.

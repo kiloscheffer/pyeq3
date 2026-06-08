@@ -1,0 +1,20 @@
+List of all possible extended version names
+Default
+ExponentialDecay
+ExponentialDecayAndOffset
+ExponentialGrowth
+ExponentialGrowthAndOffset
+Inverse
+InverseWithOffset
+LinearDecay
+LinearDecayAndOffset
+LinearGrowth
+LinearGrowthAndOffset
+Offset
+PlusLine
+PlusPlane
+Reciprocal
+ReciprocalWithOffset
+
+Instantiated Inverse Hyperbolic Logistic With Offset
+

@@ -1,0 +1,18 @@
+Fitted Parameters With No Bounds:
+    a = -8.01914E+00
+    b = 1.52645E+00
+sum of squared absolute error = 2.23837E-01
+
+Fitted Parameters With One Upper Bound:
+    a = -9.00000E+00
+    b = 1.66003E+00
+sum of squared absolute error = 7.20165E-01
+Fitted Parameters With One Lower Bound:
+    a = -8.00000E+00
+    b = 1.52384E+00
+sum of squared absolute error = 2.24026E-01
+
+Fitted Parameters With One Upper Bound And One Fixed Coefficient (fixed coeffs override bounds):
+    a = -8.50000E+00
+    b = 1.59193E+00
+sum of squared absolute error = 3.43125E-01

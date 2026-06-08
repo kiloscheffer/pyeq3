@@ -1,0 +1,88 @@
+Fitting data...
+X: 5.35700E+00
+Y: 3.76000E-01
+Model Prediction: 1.58043E-01
+Abs. Error: -2.17957E-01
+Rel. Error: -5.79674E-01
+Percent Error: -5.79674E+01
+X: 5.45700E+00
+Y: 4.89000E-01
+Model Prediction: 3.10687E-01
+Abs. Error: -1.78313E-01
+Rel. Error: -3.64648E-01
+Percent Error: -3.64648E+01
+X: 5.79700E+00
+Y: 8.74000E-01
+Model Prediction: 8.29679E-01
+Abs. Error: -4.43207E-02
+Rel. Error: -5.07102E-02
+Percent Error: -5.07102E+00
+X: 5.93600E+00
+Y: 1.04900E+00
+Model Prediction: 1.04186E+00
+Abs. Error: -7.14450E-03
+Rel. Error: -6.81077E-03
+Percent Error: -6.81077E-01
+X: 6.16100E+00
+Y: 1.32700E+00
+Model Prediction: 1.38531E+00
+Abs. Error: 5.83061E-02
+Rel. Error: 4.39383E-02
+Percent Error: 4.39383E+00
+X: 6.69700E+00
+Y: 2.05400E+00
+Model Prediction: 2.20348E+00
+Abs. Error: 1.49482E-01
+Rel. Error: 7.27760E-02
+Percent Error: 7.27760E+00
+X: 6.73100E+00
+Y: 2.07700E+00
+Model Prediction: 2.25538E+00
+Abs. Error: 1.78381E-01
+Rel. Error: 8.58840E-02
+Percent Error: 8.58840E+00
+X: 6.77500E+00
+Y: 2.13800E+00
+Model Prediction: 2.32254E+00
+Abs. Error: 1.84545E-01
+Rel. Error: 8.63165E-02
+Percent Error: 8.63165E+00
+X: 8.44200E+00
+Y: 4.74400E+00
+Model Prediction: 4.86713E+00
+Abs. Error: 1.23132E-01
+Rel. Error: 2.59554E-02
+Percent Error: 2.59554E+00
+X: 9.76900E+00
+Y: 7.06800E+00
+Model Prediction: 6.89273E+00
+Abs. Error: -1.75272E-01
+Rel. Error: -2.47980E-02
+Percent Error: -2.47980E+00
+X: 9.86100E+00
+Y: 7.10400E+00
+Model Prediction: 7.03316E+00
+Abs. Error: -7.08389E-02
+Rel. Error: -9.97169E-03
+Percent Error: -9.97169E-01
+
+Degrees of freedom error: 9
+Degrees of freedom regression: 1
+Root Mean Squared Error (RMSE): 1.42649E-01
+R-squared: 9.96389E-01
+R-squared adjusted: 9.95988E-01
+Model F-statistic: 2.48364E+03
+Model F-statistic p-value: 2.64572E-12
+Model log-likelihood: 5.81270E+00
+Model AIC: -6.93218E-01
+Model BIC: -6.20873E-01
+
+Individual Parameter Statistics:
+Coefficient a = -8.01914E+00, std error: 4.82103E-02
+          t-stat: -3.65223E+01, p-stat: 4.28454E-11, 95 percent confidence intervals: [-8.51583E+00, -7.52244E+00]
+Coefficient b = 1.52645E+00, std error: 9.38155E-04
+          t-stat: 4.98361E+01, p-stat: 2.64572E-12, 95 percent confidence intervals: [1.45716E+00, 1.59574E+00]
+
+Coefficient Covariance Matrix:
+[[ 1.93843 -0.26399]
+ [-0.26399  0.03772]]
