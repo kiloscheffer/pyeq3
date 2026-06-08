@@ -174,6 +174,40 @@ class TestUserDefinedFunctionSafety(unittest.TestCase):
         model.ParseAndCompileUserFunctionString("a*X + b*Y", 3)
         self.assertIsNotNone(model.userFunctionCodeObject)
 
+    def test_2D_eval_namespace_has_no_builtins(self):
+        # Defense-in-depth: even if a malicious code object bypassed the gate,
+        # the 2D eval namespace must not expose builtins. abs(X) is compiled
+        # directly here (the gate rejects "abs" cosmetically, so this bypasses
+        # it). abs is a Python builtin and is NOT a numpy token in safe_dict,
+        # so it resolves only if builtins are live. With the hardened namespace
+        # it raises NameError, which CalculateModelPredictions sanitises to
+        # 1e300; with live globals() it would return finite values.
+        model = pyeq3.Models_2D.UserDefinedFunction.UserDefinedFunction(
+            "SSQABS", "Default"
+        )
+        model.ParseAndCompileUserFunctionString("a + b*X", 2)
+        model.userFunctionCodeObject = compile("abs(X)", "<string>", "eval")
+        result = model.CalculateModelPredictions(
+            [1.0, 1.0], {"X": numpy.array([1.0, -2.0, 3.0])}
+        )
+        self.assertTrue(numpy.allclose(result, numpy.ones(3) * 1.0e300))
+
+    def test_benign_2D_still_solves(self):
+        # Positive control: the gate and hardened namespace do not break a
+        # legitimate fit. Expected coefficients match the existing
+        # Test_ModelSolveMethods.test_UserDefinedFunctionSolve_SSQABS_2D.
+        resultShouldBe = numpy.array([-7.88180304, 1.51245438])
+        model = pyeq3.Models_2D.UserDefinedFunction.UserDefinedFunction(
+            "SSQABS", "Default", "m*X + b"
+        )
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            DataForUnitTests.asciiDataInColumns_2D_small, model, False
+        )
+        result = model.Solve()
+        self.assertTrue(
+            numpy.allclose(result, resultShouldBe, rtol=1.0e-06, atol=1.0e-300)
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

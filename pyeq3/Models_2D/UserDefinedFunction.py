@@ -103,7 +103,11 @@ class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         # eval uses previously compiled code for improved performance
         # based on http://lybniz2.sourceforge.net/safeeval._HTML
         try:
-            temp = eval(self.userFunctionCodeObject, globals(), self.safe_dict)
+            temp = eval(
+                self.userFunctionCodeObject,
+                {"__builtins__": None, "numpy": numpy},
+                self.safe_dict,
+            )
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
