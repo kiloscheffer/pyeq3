@@ -149,6 +149,7 @@ Acknowledgement and Support
 """
 
 from . import IModel
+from . import UdfSafety
 from . import Models_3D
 from . import Models_2D
 from . import ExtendedVersionHandlers
